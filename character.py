@@ -2,9 +2,7 @@
 
 
 
-# character object
-# name, base stats
-# reference to moves
+# character template
 class Character:
 
     def __init__(self):
@@ -28,5 +26,12 @@ class Character:
         print("Ability Power: " + str(self.ap))
         print("Critical Chance: " + str(self.critChance))
 
-    def basic_attack(self):
+    def basic_attack(self, target):
         pass
+
+
+# we can override a function to write it specifically for something or we can extend it using super().function()
+
+# store active and passives skills in a list. Each skill can be an object
+
+# the Skill abstract class can have the use() function to use the skill and on hit effects if needed 
