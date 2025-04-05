@@ -1,5 +1,6 @@
 from character import Character
 
+# deals physical or some true damage, scales off pp, wp, and agility
 
 class Monk(Character):
     def __init__(self):

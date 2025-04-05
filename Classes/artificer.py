@@ -1,5 +1,6 @@
 from character import Character
 
+# deals mixed damge, scales on mp, and some resource. use more resource to empower abilities
 
 class Artificer(Character):
     def __init__(self):

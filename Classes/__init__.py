@@ -1,14 +1,14 @@
 from .artificer import Artificer
 from .assassin import Assassin
 from .barbarian import Barbarian
-from .bard import Bard
+from .scholar import Scholar
 from .cleric import Cleric
-from .fighter import Fighter
+from .mercenary import Mercenary
 from .monk import Monk
 from .paladin import Paladin
 from .ranger import Ranger
-from .rogue import Rogue
+from .thief import Thief
 from .sorceress import Sorceress
-from .wizard import Wizard
+from .bladeslinger import Bladeslinger
 
 

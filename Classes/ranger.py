@@ -1,5 +1,6 @@
 from character import Character
 
+# mixed damage, scales off agility, pp, wp
 
 class Ranger(Character):
     def __init__(self):

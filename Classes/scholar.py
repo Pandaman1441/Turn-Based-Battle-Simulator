@@ -1,9 +1,10 @@
 from character import Character
 
+# Deals magic damage mostly, support class. scales off mp, and some will power
 
-class Fighter(Character):
+class Scholar(Character):
     def __init__(self):
-        self.name = "figh"
+        self.name = "bard"
         self.hp = 1
         self.ad = 1
         self.ap = 1

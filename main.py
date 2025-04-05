@@ -1,8 +1,10 @@
 from Classes import *
 import random
 import time
+import pygame
+import pygame_menu
 
-archetypes = ["artificer", "assassin", "barbarian", "bard", "cleric", "fighter", "monk", "paladin", "ranger", "rogue", "sorceress", "wizard", ]
+archetypes = ["artificer", "assassin", "barbarian", "bladeslinger", "cleric", "mercenary", "monk", "paladin", "ranger", "scholar", "sorceress", "thief" ]
 
 def main():
     print("\nChoose a class from the options below: ")
@@ -18,11 +20,11 @@ def main():
         case 2:
             p1 = barbarian.Barbarian()
         case 3:
-            p1 = bard.Bard()
+            p1 = bladeslinger.Bladeslinger
         case 4:
             p1 = cleric.Cleric()
         case 5:
-            p1 = fighter.Fighter()
+            p1 = mercenary.Mercenary
         case 6:
             p1 = monk.Monk()
         case 7:
@@ -30,11 +32,11 @@ def main():
         case 8:
             p1 = ranger.Ranger()
         case 9:
-            p1 = rogue.Rogue()
+            p1 = scholar.Scholar()
         case 10:
             p1 = sorceress.Sorceress()
         case 11:
-            p1 = wizard.Wizard()
+            p1 = thief.Thief()
 
     
 

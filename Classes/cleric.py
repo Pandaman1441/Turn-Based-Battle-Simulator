@@ -1,5 +1,6 @@
 from character import Character
 
+# deals mixed damage, scales off pp, wp, frontline support
 
 class Cleric(Character):
     def __init__(self):

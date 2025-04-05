@@ -1,5 +1,6 @@
 from character import Character
 
+# deals mostly physical damage, scales off of health, physical power. abilites could scale off willpower
 
 class Barbarian(Character):
     def __init__(self):

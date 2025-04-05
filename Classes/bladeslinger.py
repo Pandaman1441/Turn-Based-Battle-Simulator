@@ -1,7 +1,8 @@
 from character import Character
 
+# deals most magic damage with some physical damage, scales off mostly mp, and some agility, pp
 
-class Wizard(Character):
+class Bladeslinger(Character):
     def __init__(self):
         self.name = "wiz"
         self.hp = 1

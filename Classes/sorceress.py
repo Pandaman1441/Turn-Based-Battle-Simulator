@@ -1,5 +1,6 @@
 from character import Character
 
+# deals magic damage, scales off wp, resource, can burn more resource for stronger effects
 
 class Sorceress(Character):
     def __init__(self):

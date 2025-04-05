@@ -1,6 +1,6 @@
 
 # basic enemy template, user doesn't have access to these and they have their own values like exp dropped and targeting logic
-class Enemey:
+class Enemy:
 
     def __init__(self, T):
         if T == "1":
@@ -15,3 +15,5 @@ class Enemey:
             self.ap = 1
         self.critChance = 0
     
+    def set_hp(self, value):
+        self.hp = value

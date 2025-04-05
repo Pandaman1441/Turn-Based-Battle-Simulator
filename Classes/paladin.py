@@ -1,5 +1,6 @@
 from character import Character
 
+# deals mixed damage, scales off resists, hp, wp, pp
 
 class Paladin(Character):
     def __init__(self):

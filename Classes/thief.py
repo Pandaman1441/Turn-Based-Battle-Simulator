@@ -1,7 +1,8 @@
 from character import Character
 
+# deals physical damage, scales off agility, pp
 
-class Rogue(Character):
+class Thief(Character):
     def __init__(self):
         self.name = "rog"
         self.hp = 1
@@ -23,5 +24,4 @@ class Rogue(Character):
         print("Ability Power: " + str(self.ap))
         print("Critical Chance: " + str(self.critChance))
 
-    def basic_attack(self, target):
-        pass
+    

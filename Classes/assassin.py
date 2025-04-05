@@ -1,5 +1,6 @@
 from character import Character
 
+# PD, scales off crit chance, pp and some agility
 
 class Assassin(Character):
     def __init__(self):
