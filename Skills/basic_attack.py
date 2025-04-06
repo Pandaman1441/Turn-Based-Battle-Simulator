@@ -1,5 +1,6 @@
 from skill import Skill
-
+from character import Character
+import combat
 
 
 class Basic_Attack(Skill):
@@ -13,6 +14,12 @@ class Basic_Attack(Skill):
         desc = f"Skill: {self._description} \nCost: {self._cost}"
         return desc
     
-    def use(self, user, target):
-        pass
+    def use(self, user=Character, target=Character):
+        if combat.hit_chance(user, target):
+            dmg = self._base_damage + user.get_basic_attack_modifier
+            resistance = combat.physical_resistance(target)
+            dmg *= resistance
+            combat.deal_damage(dmg, target)
+        else:
+            print("you missed or they dodged")
 
