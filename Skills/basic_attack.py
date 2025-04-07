@@ -19,7 +19,7 @@ class Basic_Attack(Skill):
             dmg = self._base_damage + user.get_basic_attack_modifier
             resistance = combat.physical_resistance(target)
             dmg *= resistance
-            combat.deal_damage(dmg, target)
+            combat.damage_target(dmg, target)
         else:
             print("you missed or they dodged")
 

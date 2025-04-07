@@ -1,5 +1,5 @@
 
-
+import copy
 
 
 # character template
@@ -10,14 +10,14 @@ class Character:
         self._max_hp = 500
         self._max_resource = 300
         self._stats = { 
-            "hp":       500,        # health points
-            "pp":       1,          # physical power
-            "mp":       1,          # magical power
-            "ag":       1,          # dodge chance, inititive 
-            "wp":       1,          # willpower
-            "pr":       1,          # physical resist
-            "mr":       1,          # magical resist
-            "resource": 300         # mana or other type of resource like rage
+            "hp":       {"max": 500, "current": 500},        # health points
+            "pp":       {"max": 1, "current": 20},          # physical power
+            "mp":       {"max": 1, "current": 10},          # magical power
+            "ag":       {"max": 1, "current": 10},          # dodge chance, inititive 
+            "wp":       {"max": 1, "current": 1},          # willpower
+            "pr":       {"max": 1, "current": 1},          # physical resist
+            "mr":       {"max": 1, "current": 1},          # magical resist
+            "resource": {"max": 300, "current": 300},         # mana or other type of resource like rage
         }
         self._accuracy = 1          # chance to hit
         self._crit_chance = 1
@@ -28,7 +28,7 @@ class Character:
             "hp":       0 ,  
             "pp":       1,    
             "mp":       0,    
-            "ag":       0,         
+            "ag":       0.3,         
             "wp":       0,  
             "pr":       0,    
             "mr":       0,    
@@ -43,17 +43,20 @@ class Character:
 
 
     def get_basic_attack_modifier(self):
-        value = sum(self._stats[stat] * mod for stat, mod in self._basic_attack_modifier.items())
+        value = sum(self._stats[stat]["current"] * mod for stat, mod in self._basic_attack_modifier.items())
         return value
 
     def get_all_stats(self):
-        return self._stats.copy()
+        return copy.deepcopy(self._stats)
 
     def get_stat(self, stat):
-        return self._stats[stat]
+        return self._stats[stat].copy()
 
-    def set_stat(self, stat, value):
-        self._stats[stat] = value
+    def set_current_stat(self, stat, value):
+        self._stats[stat]["current"] = value
+
+    def set_max_stat(self, stat, value):
+        self._stats[stat]["max"] = value
 
     def get_accuracy(self):
         return self._accuracy
@@ -102,7 +105,7 @@ class Character:
 
 p1 = Character()
 stats = p1.get_all_stats()
-print(stats["hp"])
+# print(stats["hp"])
 for key, value in stats.items():
     print(f"{key}: {value}")
 

@@ -13,3 +13,7 @@ class Skill():
     
     def use(self, user, target):
         pass
+
+
+    # skills are loaded by string in the character object, we don't keep a reference of the skill objects 
+    # and just call them by matching string names then immediatly use them. they are then garbage collected afterwards
