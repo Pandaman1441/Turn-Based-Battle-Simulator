@@ -69,6 +69,14 @@ general workflow and design of project
 ## 3. Implementation
 
  commentary during implementation
+Thinking about how the menu and GUI should look like and what information I want to show has been difficult, I'm not great at designing good looking ones. 
+
+It needs to have a way to look at the character and abilities and items.
+
+need to figure out how items are going to work. probably just objects like the skills.
+
+if i try to make it an auto battler then i'd need to multithreading to keep track of attack speeds of the various actors so this is probably out of scope of this project.
+
 
   
 
