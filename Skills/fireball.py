@@ -1,19 +1,20 @@
 from skill import Skill
 
 
-class Basic_Attack(Skill):
+class Fire_ball(Skill):
     def __init__(self):
-        self._name = "basic attack"
+        self._name = "Skill"
         self._base_damage = 1
         self._description = "test."
         self._cost = 1
         print(f"{self._name} have been initialized")
 
+
     def get_info(self):
         desc = f"Skill: {self._description} \nCost: {self._cost}"
         return desc
     
-    def use(self, user, target):
+    def use(self, user="Character", target="Character"):
         import combat
         if combat.hit_chance(user, target):
             dmg = self._base_damage + user.get_basic_attack_modifier()
@@ -21,7 +22,7 @@ class Basic_Attack(Skill):
             dmg *= resistance
             combat.damage_target(dmg, target)
         else:
-            pass
+            print("you missed or they dodged")
         
-        print(f"{self._name} has been used")
+        print(f"{self._name} have been used")
 

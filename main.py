@@ -4,6 +4,7 @@ import time
 import pygame
 import pygame_menu
 
+
 archetypes = ["artificer", "assassin", "barbarian", "bladeslinger", "cleric", "mercenary", "monk", "paladin", "ranger", "scholar", "sorceress", "thief" ]
 
 def main():

@@ -77,7 +77,7 @@ need to figure out how items are going to work. probably just objects like the s
 
 if i try to make it an auto battler then i'd need to multithreading to keep track of attack speeds of the various actors so this is probably out of scope of this project.
 
-
+I'm working on how the skill objects are going to work and i'm caught in a kind of loop right now, a loop of imports, because i have all the import statements at the top they get run any time the file gets imported, so after a couple hours of hitting my head against the wall, i realized that i'm passing the objects. as long as i only pass the specific object that a method need then it should be fine. I was passing a character object to the use method in a skill and so i had type checking in the arguments so i needed the import before the stub. i removed that type checking and the import statement for character and things running fine because the file doesn't need to know that a method exisits for it to use it.
   
 
 ## 4. testing and debugging

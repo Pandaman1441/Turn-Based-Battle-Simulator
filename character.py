@@ -1,6 +1,6 @@
 
 import copy
-
+from Skill_Loader import load_skills
 
 # character template
 class Character:
@@ -34,6 +34,11 @@ class Character:
             "mr":       0,    
             "resource": 0  
         }
+        self._loaded_actives = load_skills(self._actives)
+        self._loaded_passives = load_skills(self._passives)
+
+
+        # load skills into a list of objects, anytime we add a new skill we just 
 
     def __str__(self):
         pass
@@ -87,12 +92,28 @@ class Character:
     
     def add_active(self, skill=str):
         self._actives.append(skill)
+        self._loaded_actives = load_skills(self._actives)
 
     def add_passive(self, skill=str):
         self._passives.append(skill)
+        self._loaded_passives = load_skills(self._passives)
+
 
     def set_basic_attack_modifier(self, stat, value):
         self._basic_attack_modifier[stat] = value
+
+    def use_skill(self, skill_name, target):
+        skill = next((s for s in self._loaded_actives if s.name == skill_name), None)
+        if skill:
+            skill.use(user=self, target=target)
+        else:
+            print(f"{self._name} does not know the skill '{skill_name}'.")
+
+    def get_loaded_actives(self):
+        return self._loaded_actives.copy()
+
+    def get_loaded_passives(self):
+        return self._loaded_passives.copy() 
 
 # we can override a function to write it specifically for something or we can extend it using super().function()
 
@@ -103,11 +124,11 @@ class Character:
 
 # testing \/
 
+# from Skills import skill_registry
 p1 = Character()
-stats = p1.get_all_stats()
-# print(stats["hp"])
-for key, value in stats.items():
-    print(f"{key}: {value}")
+p2 = Character()
+skills = p1.get_actives()
 
-ba = p1.get_basic_attack_modifier()
-print(ba)
+l = p1.get_loaded_actives()
+r = l[0]
+r.use(p1, p2)
