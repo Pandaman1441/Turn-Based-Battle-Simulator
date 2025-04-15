@@ -35,11 +35,9 @@ def hit_chance(user, target):
     a = user.get_accuracy()
     d = dodge_chance(target.get_stat("ag")["current"]) * 100
     d = math.ceil(d)
-
     hc = a - d
     hc = max(5, min(hc, 95))
     roll = random.randint(0,100)
-
     if roll <= hc:
         print("hit landed. Calculating damage")
         return True

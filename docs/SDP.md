@@ -59,12 +59,62 @@ general workflow and design of project
             “PP”: {“max”: 10, “current”: 10},
             }
 
-        Def get current hp(self):
-            Return self.stats[“hp”][“current”]
+        def get_all_stats(self):
+			return stats						# this is mainly to get the stats to display
 
-        Def adjust current hp(self, change):
-            self.stats[“hp”][“current”] += change
+		def get_stat(self, stat):
+			return stat[stat]       			# returns both current and max values for a stat
+		
+		def set_current_stat(self, stat, value):
+			stats[stat]["current"] = value
+			
+		def set_max_stat(self, stat, value):
+			stats[stat]["max"] = value
     ```
+
+- Skills are objects but in a character object we are keeping two lists. One is of the names of the skills as strings. The second one is a list of the actual skill objects. when a skill is added we grab that string name and run it through the skill registry which then matches it to the object and instantiates it and puts in the second list.
+	- having the two lists makes saving the abilities a character has easier and also lets us quickly access the skill names to display when needed.
+
+- I'm going to try quickly going through what I think the whole process of starting and taking the first turn.
+
+- First the user is prompted to choose a character, the corresponding character object is instantiated
+	- all characters start with a basic attack active skill and another skill related to their class, these are part of the init of each class. Those skills are then run through the skill loader to create the skill objects for the character to use later.
+- user chooses to start a battle
+	- a random enemy is generated, enemies will be based on the Character abstract class so the skill loader will be run again for them.
+	- user's character and enemy are displayed
+		- hp, resource, scaling stats like pp and mp, resistances, accuracy, critical chance and damage.
+		- need a UI to separate active, passive skills and inventory
+			- in each of those separate sections we can display more information and allow the user to choose to use a active skill, the other two are just to show the user how they work.
+		- another section to inspect an enemy, showing more of their stats
+		- another section to choose the basic attack of the character that then goes into targetting.
+	- if the user choose the active skill section and an ability to use, we then check if the skill targets allies or enemies and display who is targetable.
+		- on selection we use the use_skill method in the character passing the string name of the skill and the target
+			- it matches the string to an object based on the object's name
+			- on a match we then call the skill object's use method and pass the user's character and the target
+		- the skill will handle calling the various functions from the combat file
+			- we can say that ally targeted abilities always land so no need to check if an skill lands
+			- on enemies we get the hit chance based on the user's accuracy minus the target's dodge chance
+				- hit chance is capped at 5 and 95 so there is always a chance to hit or miss
+				- then we roll a random number between 0 and 100, if the roll is less than or equal to the hit chance we calculated the hit lands otherwise it misses and returns a true or false based ont he result
+			- if the skill lands then we calculate the damage the skill does, this part will be specific to each skill.
+				- abilities will have their own base damage or value and then a scaling based on a stat or stats
+				- maybe a skill has a % health or stat scaling. We get the corresponding stat and multiply it by the scaling value
+				- the values are added to the skill's base damage
+				- we calculate the enemie's resistance, either physical or magical 
+					- this is a percentage, they take 30% reduced physical damage or such
+				- we multiply the damage of the skill and the resist percentage giving us a reduced value
+				- finally we call combat.damage_target(), we pass the damage and the target
+					- in damage_target we are just getting the target's current hp and subtracting the damage value it was passed.
+					- we set a cap to prevent negative values of health
+					- we then set the current hp of the target, either 0 or a value higher than 0
+		- we need to keep track of enemies and user characters. should either side be completely defeated we return to the main menu and add experience or gold to the user's characters.
+
+- character's get more stats based on level. each class will need to have what increases each level, these will be flat values each level
+
+- loading a save we'll only need the string skill lists, the character lvl, class,
+	- instanitate a character based on the class
+	- figure out what the stat values should be based on the base character class plus the stats based on level
+	- skill loader will be run
 
 ## 3. Implementation
 

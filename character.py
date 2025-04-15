@@ -7,19 +7,19 @@ class Character:
 
     def __init__(self):
         self._name = "Test"
-        self._max_hp = 500
-        self._max_resource = 300
+        self._level = 1
+        self._ex = 0
         self._stats = { 
             "hp":       {"max": 500, "current": 500},        # health points
-            "pp":       {"max": 1, "current": 20},          # physical power
-            "mp":       {"max": 1, "current": 10},          # magical power
-            "ag":       {"max": 1, "current": 10},          # dodge chance, inititive 
-            "wp":       {"max": 1, "current": 1},          # willpower
-            "pr":       {"max": 1, "current": 1},          # physical resist
-            "mr":       {"max": 1, "current": 1},          # magical resist
+            "pp":       {"max": 20, "current": 20},          # physical power
+            "mp":       {"max": 10, "current": 10},          # magical power
+            "ag":       {"max": 10, "current": 10},          # dodge chance, inititive 
+            "wp":       {"max": 10, "current": 10},          # willpower
+            "pr":       {"max": 10, "current": 10},          # physical resist
+            "mr":       {"max": 10, "current": 10},          # magical resist
             "resource": {"max": 300, "current": 300},         # mana or other type of resource like rage
         }
-        self._accuracy = 1          # chance to hit
+        self._accuracy = 80          # chance to hit
         self._crit_chance = 1
         self._crit_damage = 1.5
         self._actives = ["basic attack"]
