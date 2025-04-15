@@ -22,6 +22,7 @@ def magic_resistance(entity):
     r = r["current"]
     n = 90
     value = (r * 1) / (r+n)
+    print(f"magical resistance: {value}")
     return value
 
 def physical_resistance(entity):
@@ -29,15 +30,17 @@ def physical_resistance(entity):
     r = r["current"]
     n = 90
     value = (r * 1) / (r+n)
+    print(f"physical resistance: {value}")
     return value
 
 def hit_chance(user, target):
-    a = user.get_accuracy()
+    a = user.accuracy
     d = dodge_chance(target.get_stat("ag")["current"]) * 100
     d = math.ceil(d)
     hc = a - d
     hc = max(5, min(hc, 95))
     roll = random.randint(0,100)
+    print(f"roll: {roll}, beat hit chance: {hc}")
     if roll <= hc:
         print("hit landed. Calculating damage")
         return True

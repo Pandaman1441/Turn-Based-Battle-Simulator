@@ -6,10 +6,10 @@ from Skill_Loader import load_skills
 class Character:
 
     def __init__(self):
-        self._name = "Test"
-        self._level = 1
-        self._ex = 0
-        self._stats = { 
+        self.__name = "Test"
+        self.__level = 1
+        self.__ex = 0
+        self.__stats = { 
             "hp":       {"max": 500, "current": 500},        # health points
             "pp":       {"max": 20, "current": 20},          # physical power
             "mp":       {"max": 10, "current": 10},          # magical power
@@ -17,14 +17,14 @@ class Character:
             "wp":       {"max": 10, "current": 10},          # willpower
             "pr":       {"max": 10, "current": 10},          # physical resist
             "mr":       {"max": 10, "current": 10},          # magical resist
-            "resource": {"max": 300, "current": 300},         # mana or other type of resource like rage
+            "resource": {"max": 300, "current": 300},        # mana or other type of resource like rage
         }
-        self._accuracy = 80          # chance to hit
-        self._crit_chance = 1
-        self._crit_damage = 1.5
-        self._actives = ["basic attack"]
-        self._passives = []
-        self._basic_attack_modifier = {
+        self.__accuracy = 80                                  # chance to hit
+        self.__crit_chance = 1
+        self.__crit_damage = 1.5
+        self.__actives = ["basic attack"]
+        self.__passives = []
+        self.__basic_attack_modifier = {
             "hp":       0 ,  
             "pp":       1,    
             "mp":       0,    
@@ -34,11 +34,9 @@ class Character:
             "mr":       0,    
             "resource": 0  
         }
-        self._loaded_actives = load_skills(self._actives)
-        self._loaded_passives = load_skills(self._passives)
+        self.__loaded_actives = load_skills(self.__actives)
+        self.__loaded_passives = load_skills(self.__passives)
 
-
-        # load skills into a list of objects, anytime we add a new skill we just 
 
     def __str__(self):
         pass
@@ -48,72 +46,76 @@ class Character:
 
 
     def get_basic_attack_modifier(self):
-        value = sum(self._stats[stat]["current"] * mod for stat, mod in self._basic_attack_modifier.items())
+        value = sum(self.__stats[stat]["current"] * mod for stat, mod in self.__basic_attack_modifier.items())
         return value
-
-    def get_all_stats(self):
-        return copy.deepcopy(self._stats)
+    
+    @property
+    def stats(self):
+        return copy.deepcopy(self.__stats)
 
     def get_stat(self, stat):
-        return self._stats[stat].copy()
+        return self.__stats[stat].copy()
 
     def set_current_stat(self, stat, value):
-        self._stats[stat]["current"] = value
+        self.__stats[stat]["current"] = value
 
     def set_max_stat(self, stat, value):
-        self._stats[stat]["max"] = value
+        self.__stats[stat]["max"] = value
 
-    def get_accuracy(self):
-        return self._accuracy
+    @property
+    def accuracy(self):
+        return self.__accuracy
     
     def set_accuracy(self, value):
-        self._accuracy = value
+        self.__accuracy = value
     
-    def get_crit_chance(self):
-        return self._crit_chance
+    @property
+    def crit_chance(self):
+        return self.__crit_chance
     
     def set_crit_chance(self, value):
-        self._crit_chance = value
+        self.__crit_chance = value
     
-    def get_crit_damage(self):
-        return self._crit_damage
+    @property
+    def crit_damage(self):
+        return self.__crit_damage
     
     def set_crit_damage(self, value):
-        self._crit_damage = value
+        self.__crit_damage = value
 
-    def get_name(self):
-        return self._name
+    @property
+    def name(self):
+        return self.__name
 
     def get_actives(self):
-        return self._actives.copy()
+        return self.__actives.copy()
     
     def get_passives(self):
-        return self._passives.copy()
+        return self.__passives.copy()
     
     def add_active(self, skill=str):
-        self._actives.append(skill)
-        self._loaded_actives = load_skills(self._actives)
+        self.__actives.append(skill)
+        self.__loaded_actives = load_skills(self.__actives)
 
     def add_passive(self, skill=str):
-        self._passives.append(skill)
-        self._loaded_passives = load_skills(self._passives)
-
+        self.__passives.append(skill)
+        self.__loaded_passives = load_skills(self.__passives)
 
     def set_basic_attack_modifier(self, stat, value):
-        self._basic_attack_modifier[stat] = value
+        self.__basic_attack_modifier[stat] = value
 
     def use_skill(self, skill_name, target):
-        skill = next((s for s in self._loaded_actives if s.name == skill_name), None)
+        skill = next((s for s in self.__loaded_actives if s.name == skill_name), None)
         if skill:
             skill.use(user=self, target=target)
         else:
-            print(f"{self._name} does not know the skill '{skill_name}'.")
+            print(f"{self.__name} does not know the skill '{skill_name}'.")
 
     def get_loaded_actives(self):
-        return self._loaded_actives.copy()
+        return self.__loaded_actives.copy()
 
     def get_loaded_passives(self):
-        return self._loaded_passives.copy() 
+        return self.__loaded_passives.copy() 
 
 # we can override a function to write it specifically for something or we can extend it using super().function()
 
@@ -125,10 +127,13 @@ class Character:
 # testing \/
 
 # from Skills import skill_registry
-p1 = Character()
-p2 = Character()
-skills = p1.get_actives()
+# p1 = Character()
+# p2 = Character()
+# skills = p1.get_actives()
 
-l = p1.get_loaded_actives()
-r = l[0]
-r.use(p1, p2)
+# l = p1.get_loaded_actives()
+# r = l[0]
+# r.use(p1, p2)
+
+# hp = p2.get_stat("hp")
+# print(hp["current"])

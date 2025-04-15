@@ -116,6 +116,11 @@ general workflow and design of project
 	- figure out what the stat values should be based on the base character class plus the stats based on level
 	- skill loader will be run
 
+#### Menu Stuff
+- the various screens are going to have to be various states, having different files will make the them more manageable.
+- pygame-menu keeps track of menus and the BACK event goes back to whatever the previous menu was
+- the actual game loop will have to be different from the menus
+
 ## 3. Implementation
 
  commentary during implementation

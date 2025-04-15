@@ -18,7 +18,9 @@ class Basic_Attack(Skill):
         if combat.hit_chance(user, target):
             dmg = self._base_damage + user.get_basic_attack_modifier()
             resistance = combat.physical_resistance(target)
+            print(f"pre damage: {dmg}")
             dmg *= resistance
+            print(f"post damgae: {dmg}")
             combat.damage_target(dmg, target)
         else:
             pass
