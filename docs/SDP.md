@@ -121,6 +121,16 @@ general workflow and design of project
 - pygame-menu keeps track of menus and the BACK event goes back to whatever the previous menu was
 - the actual game loop will have to be different from the menus
 
+- I've decided to not use pygame-menu, it a pretty simple menu system and would be perfect for quick or minor menus but considering this will be a mostly menu kind of game i would need to write everything i need for the gameplay as i would the menu
+- buttons can be cycled through, buttons have a selected flag, a set of buttons work like street lights, when only one is selected at a time and the next one selected is based on key presses.
+	- we need to keep a state of which button is selected each frame
+- button class
+	- needed attributes; text, position (x,y), callback
+
+- battle menu will be it's own class as well, creates the buttons, their actions and sets the layout, then a method to display it all at once
+
+	- rect = (x pos, y pos, width, height)
+
 ## 3. Implementation
 
  commentary during implementation

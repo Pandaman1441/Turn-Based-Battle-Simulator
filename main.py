@@ -2,7 +2,7 @@ from Classes import *
 import random
 import time
 import pygame
-import pygame_menu
+
 
 
 
@@ -11,13 +11,19 @@ archetypes = ["artificer", "assassin", "barbarian", "bladeslinger", "cleric", "m
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
+font = pygame.font.Font(None, 36)
 running = True
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("purple")
+    screen.fill("black")
+    shape = pygame.Rect(50,80,500,100)                      # create a rect
+    pygame.draw.rect(screen, (0,125,0), shape)              # draw rect on screen
+    text = font.render("hello world", 1, (255,255,255))     # create text
+    text_rect = text.get_rect(center=shape.center)          # we move the text rect to be centered in the shape
+    screen.blit(text,text_rect)                             # we are passing the top left of the rect, when we blit it only 
     pygame.display.flip()
     clock.tick(60)
 
