@@ -2,6 +2,7 @@ from Classes import *
 import random
 import time
 import pygame
+from UI_backend import button
 
 
 
@@ -9,7 +10,7 @@ import pygame
 archetypes = ["artificer", "assassin", "barbarian", "bladeslinger", "cleric", "mercenary", "monk", "paladin", "ranger", "scholar", "sorceress", "thief" ]
 
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((1440, 900))
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 running = True
@@ -19,11 +20,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     screen.fill("black")
+    x = pygame.image.load("Assests/background.jpg")
+    bg = pygame.Surface.convert(x)
+    screen.blit(bg,(0,0))
     shape = pygame.Rect(50,80,500,100)                      # create a rect
     pygame.draw.rect(screen, (0,125,0), shape)              # draw rect on screen
     text = font.render("hello world", 1, (255,255,255))     # create text
     text_rect = text.get_rect(center=shape.center)          # we move the text rect to be centered in the shape
     screen.blit(text,text_rect)                             # we are passing the top left of the rect, when we blit it only 
+    
+    action = button.Button("hello world", (50,80), 500, 100)
+    action.draw(screen)
     pygame.display.flip()
     clock.tick(60)
 
