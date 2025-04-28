@@ -125,11 +125,17 @@ general workflow and design of project
 - buttons can be cycled through, buttons have a selected flag, a set of buttons work like street lights, when only one is selected at a time and the next one selected is based on key presses.
 	- we need to keep a state of which button is selected each frame
 - button class
-	- needed attributes; text, position (x,y), callback
+	- needed attributes; text, position (x,y), callback, optionals of width and height 
 
 - battle menu will be it's own class as well, creates the buttons, their actions and sets the layout, then a method to display it all at once
 
 	- rect = (x pos, y pos, width, height)
+
+- I've spent a bit thinking what UI elements i'll need for the gameplay screen. what the buttons should do and where it all is going to go. Made a quick mock of what i was thinking just to see it and i've started converting it into pygame. The button object helps making the ui faster but the buttons don't actually do anything yet. i'm going to place some like placeholder kind of boxes in the rest of where i want the UI and then start working on getting some of the character information to display and working buttons. 
+
+- There will probably be no mouse usage in this, I don't think it's that complicated to track the curser but i just want to use the arrow keys for navigation
+
+
 
 ## 3. Implementation
 
