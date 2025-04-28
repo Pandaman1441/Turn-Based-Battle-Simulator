@@ -15,8 +15,14 @@ class Button:
         print(self.__y)
 
     def draw(self, screen):
-        shape = pygame.Rect((self.__x,self.__y), (self.__width, self.__height))
-        pygame.draw.rect(screen, (164,160,165), shape)      # draw rect on screen
-        text = self.__font.render(self.__text, 1, (255,255,255))   # create text
-        text_rect = text.get_rect(center=shape.center)      # we move the text rect to be centered in the shape
-        screen.blit(text,text_rect)                         # we are passing the top left of the rect, when we blit it only 
+
+        shape = pygame.Surface((self.__width, self.__height), pygame.SRCALPHA)
+        shape.fill((164,160,165,230))
+        screen.blit(shape, (self.__x,self.__y))
+
+        border = pygame.Rect((self.__x - 4, self.__y - 4), (self.__width + 4*2, self.__height + 4*2))
+        pygame.draw.rect(screen, (240,240,240), border, 2)
+        text = self.__font.render(self.__text, 1, (255,255,255))    # create text
+        text_rect = text.get_rect(center=border.center)             # we move the text rect to be centered in the shape
+        screen.blit(text,text_rect)                                 # we are passing the top left of the rect, when we blit it only 
+        
