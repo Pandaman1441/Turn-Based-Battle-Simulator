@@ -21,20 +21,25 @@ thing = battle_ui.b_UI()
 
 
 while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
     screen.fill("black")
-    x = pygame.image.load("Assests/background.j" \
-    "pg")
+    x = pygame.image.load("Assests/background.jpg")
     bg = pygame.Surface.convert(x)
     screen.blit(bg,(0,0))
     
     thing.draw(screen)
     pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            thing.handle_event(event)
+
     clock.tick(60)
 
 pygame.quit()
+
+
 
 # def main():
 #     print("\nChoose a class from the options below: ")

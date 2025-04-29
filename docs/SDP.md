@@ -135,6 +135,7 @@ general workflow and design of project
 
 - There will probably be no mouse usage in this, I don't think it's that complicated to track the curser but i just want to use the arrow keys for navigation
 
+- The way to get inputs from pygame is a little confusing there are several ways to get input but they work different. i have found using KEYDOWN gives me just one instance of a button being pushed down, another one like get_key_pressed gave me the whole list of possible keys and true or false values for each and when using keyboard navigation it was too fast at processing those events so it was impossible to move just one space. I imagine that would be significantly more helpful for consistant movement in like a 3d game.
 
 
 ## 3. Implementation
