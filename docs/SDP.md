@@ -137,6 +137,8 @@ general workflow and design of project
 
 - The way to get inputs from pygame is a little confusing there are several ways to get input but they work different. i have found using KEYDOWN gives me just one instance of a button being pushed down, another one like get_key_pressed gave me the whole list of possible keys and true or false values for each and when using keyboard navigation it was too fast at processing those events so it was impossible to move just one space. I imagine that would be significantly more helpful for consistant movement in like a 3d game.
 
+- I've just realized that the different screens should probably work similar to how i've done the buttons, with one being selected and we just draw the selected screen
+
 
 ## 3. Implementation
 

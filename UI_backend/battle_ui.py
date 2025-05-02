@@ -46,12 +46,14 @@ class b_UI:
         col = ps % 3
         if event.key == pygame.K_RIGHT:
             col = (col + 1) % 3
-        if event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT:
             col = (col - 1) % 3
-        if event.key == pygame.K_DOWN:
+        elif event.key == pygame.K_DOWN:
             row = (row + 1) % 2
-        if event.key == pygame.K_UP:
+        elif event.key == pygame.K_UP:
             row = (row - 1) % 2
+        elif event.key == pygame.K_RETURN:
+            return "menu"
         self.__buttons[ps].selected(False)
         
         value = (row * 3) + col

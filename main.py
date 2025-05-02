@@ -4,7 +4,8 @@ import time
 import pygame
 from UI_backend import button
 from UI_backend import battle_ui
-
+from Screens import main_menu
+import screen_manager
 
 
 
@@ -16,24 +17,26 @@ clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 running = True
 
+x = pygame.image.load("Assests/background.jpg")
+bg = pygame.Surface.convert(x)
 action = button.Button("hello world", (50,700), 500, 100)
-thing = battle_ui.b_UI()
 
+manager = screen_manager.manager()
 
 while running:
-    screen.fill("black")
-    x = pygame.image.load("Assests/background.jpg")
-    bg = pygame.Surface.convert(x)
-    screen.blit(bg,(0,0))
-    
-    thing.draw(screen)
-    pygame.display.flip()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN:
-            thing.handle_event(event)
+        elif event.type == pygame.KEYDOWN:
+            manager.handle_event(event)
+                
+    screen.fill("black")
+    
+    screen.blit(bg,(0,0))
+    
+    manager.draw(screen)
+    pygame.display.flip()
 
     clock.tick(60)
 
