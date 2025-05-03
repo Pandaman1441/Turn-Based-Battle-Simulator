@@ -29,7 +29,8 @@ class Button:
         screen.blit(text,text_rect)                                 # we are passing the top left of the rect, when we blit it only 
         
     def selected(self, value):
-        if value:
-            self.__selected = True
-        else:
-            self.__selected = False
+        
+        self.__selected = value
+
+    def get_selected(self):
+        return self.__selected

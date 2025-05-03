@@ -7,7 +7,6 @@ class Skill():
         self._base_damage = 1
         self._description = "test."
         self._cost = 1
-        print("i have been initialized")
 
     def get_info(self):
         desc = f"Skill: {self._description} \nCost: {self._cost}"

@@ -7,7 +7,6 @@ class Fire_ball(Skill):
         self._base_damage = 1
         self._description = "test."
         self._cost = 1
-        print(f"{self._name} have been initialized")
 
 
     def get_info(self):
@@ -24,5 +23,5 @@ class Fire_ball(Skill):
         else:
             print("you missed or they dodged")
         
-        print(f"{self._name} have been used")
+        print(f"{self._name} has been used")
 
