@@ -139,6 +139,8 @@ general workflow and design of project
 
 - I've just realized that the different screens should probably work similar to how i've done the buttons, with one being selected and we just draw the selected screen
 
+- title screen has option to load a game or start new game by selecting a new class
+- then goes to main menu, has battle, shop, party
 
 ## 3. Implementation
 

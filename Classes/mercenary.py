@@ -36,6 +36,8 @@ class Mercenary(Character):
         }
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
+        self.__icon = "Assests/64x64/tile008.png"
+
 
 
     def __str__(self):
@@ -86,6 +88,10 @@ class Mercenary(Character):
     @property
     def name(self):
         return self.__name
+
+    @property
+    def icon(self):
+        return self.__icon
 
     def get_actives(self):
         return self.__actives.copy()

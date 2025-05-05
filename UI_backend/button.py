@@ -27,9 +27,9 @@ class Button:
         text = self.__font.render(self.__text, 1, (255,255,255))    # create text
         text_rect = text.get_rect(center=border.center)             # we move the text rect to be centered in the shape
         screen.blit(text,text_rect)                                 # we are passing the top left of the rect, when we blit it only 
-        
+
+
     def selected(self, value):
-        
         self.__selected = value
 
     def get_selected(self):

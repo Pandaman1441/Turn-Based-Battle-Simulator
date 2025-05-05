@@ -1,11 +1,13 @@
-from UI_backend import battle_ui
+from Screens import battle_ui
+from Screens import title
 from Screens import main_menu
 
-
 class manager:
-    def __init__(self):
-        self.screens = {"menu" : main_menu.menu(),
-           "battle" : battle_ui.b_UI()
+    def __init__(self, pc):
+        self.pc = pc
+        self.screens = {
+                        "battle" : battle_ui.b_UI(pc),
+                        "menu" : main_menu.menu(pc)
            }
         self.current = self.screens["menu"]
 

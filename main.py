@@ -1,10 +1,7 @@
 from Classes import *
-import random
-import time
 import pygame
-from UI_backend import button
-from UI_backend import battle_ui
-from Screens import main_menu
+
+from Screens import title
 import screen_manager
 
 
@@ -15,26 +12,38 @@ pygame.init()
 screen = pygame.display.set_mode((1440, 900))
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
+intro = True
 running = True
 
-x = pygame.image.load("Assests/background.jpg")
-bg = pygame.Surface.convert(x)
-action = button.Button("hello world", (50,700), 500, 100)
+first = title.Title()
 
-manager = screen_manager.manager()
+pc = None
+
+while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                intro = False
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                pc = first.handle_event(event)
+                if pc:
+                    intro = False
+                    print(f"You have chosen: {pc.name}")
+        first.draw(screen)
+        pygame.display.flip()
+
+manager = screen_manager.manager(pc)
+
 
 while running:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
             manager.handle_event(event)
                 
-    screen.fill("black")
-    
-    screen.blit(bg,(0,0))
-    
+
+    screen.fill("black")    
     manager.draw(screen)
     pygame.display.flip()
 
