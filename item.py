@@ -1,7 +1,7 @@
 
 
 
-class Skill():
+class Item():
     def __init__(self):
         self._name = "skill"
         self._base_damage = 1
@@ -12,9 +12,8 @@ class Skill():
         desc = f"Skill: {self._description} \nCost: {self._cost}"
         return desc
     
-    def use(self, target):
+    def use(self, user, target):
         pass
 
-
-    # skills are loaded by string in the character object, we don't keep a reference of the skill objects 
-    # and just call them by matching string names then immediatly use them. they are then garbage collected afterwards
+    def get_stats(self):
+        return

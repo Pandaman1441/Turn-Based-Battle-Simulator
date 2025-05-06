@@ -13,7 +13,7 @@ class Fire_ball(Skill):
         desc = f"Skill: {self._description} \nCost: {self._cost}"
         return desc
     
-    def use(self, user="Character", target="Character"):
+    def use(self, user, target):
         import combat
         if combat.hit_chance(user, target):
             dmg = self._base_damage + user.get_basic_attack_modifier()

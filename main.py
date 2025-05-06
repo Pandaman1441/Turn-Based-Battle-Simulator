@@ -44,7 +44,7 @@ while running:
                 
     if not manager.get_status():
         running = False
-    screen.fill("black")    
+    screen.fill("black")     
     manager.draw(screen)
     pygame.display.flip()
 
