@@ -42,7 +42,8 @@ while running:
         elif event.type == pygame.KEYDOWN:
             manager.handle_event(event)
                 
-
+    if not manager.get_status():
+        running = False
     screen.fill("black")    
     manager.draw(screen)
     pygame.display.flip()
