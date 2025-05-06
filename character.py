@@ -12,17 +12,17 @@ class Character:
         self.__level = 1
         self.__ex = 0
         self.__base_stats = {
-            "hp":       500,  
-            "pp":       20,    
-            "mp":       10,    
-            "ag":       10,         
-            "wp":       10,  
-            "pr":       10,    
-            "mr":       10,    
-            "resource": 300,
-            "accuracy": 80,
-            "crit_change": 1,
-            "crit_dmg": 1.5
+            "hp":       {"max": 500, "current": 500},      
+            "pp":       {"max": 20, "current": 20},        
+            "mp":       {"max": 10, "current": 10},       
+            "ag":       {"max": 10, "current": 10},        
+            "wp":       {"max": 10, "current": 10},       
+            "pr":       {"max": 10, "current": 10},    
+            "mr":       {"max": 10, "current": 10},        
+            "resource": {"max": 300, "current": 300},        
+            "accuracy": {"max": 80, "current": 80},
+            "crit_chance": {"max": 1, "current": 1},
+            "crit_dmg": {"max": 1.5, "current": 1.5}
         }
         self.__stats = { 
             "hp":       {"max": 500, "current": 500},        # health points
@@ -69,14 +69,13 @@ class Character:
     def update_stats(self):
         old_stats = copy.deepcopy(self.__stats)
         self.__stats = copy.deepcopy(self.__base_stats)
-        for item in self.__inventory:
+        for item in self.__loaded_inventory:
             i_stats = item.get_stats()
             for stat, mod in i_stats.items():
                 self.__stats[stat]["max"] += mod 
         for stat in self.__stats:
             percentage = old_stats[stat]["current"] / old_stats[stat]["max"]
             self.__stats[stat]["current"] = math.ceil(self.__stats[stat]["max"] * percentage)
-
 
     @property
     def stats(self):
