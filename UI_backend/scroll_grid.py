@@ -5,7 +5,7 @@ from UI_backend import item_icon
 
 
 class Scroll_Grid():
-    def __init__(self):
+    def __init__(self,pc):
         self.__item_list = Items.load_all_items()
         self.__buttons = []
         self.__font = pygame.font.Font(None, 36)
@@ -34,7 +34,6 @@ class Scroll_Grid():
 
         border = pygame.Rect((26,26), (1388, 736))
         pygame.draw.rect(screen, (240,240,240), border, 2)
-        pygame.draw.line(screen, (240,240,240), (720,26), (720, 760),3)
         shape = pygame.Surface((1384, 732), pygame.SRCALPHA)
 
         if self.__outer:
@@ -42,6 +41,9 @@ class Scroll_Grid():
         else:
             shape.fill((114,110,115,0))
         screen.blit(shape,(28,28))
+        pygame.draw.line(screen, (240,240,240), (720,26), (720, 760),3)
+        pygame.draw.line(screen, (240,240,240), (720,406), (1412, 406), 3)
+        pygame.draw.line(screen, (240,240,240), (1067,26), (1067, 406))
 
         for b in self.__buttons:
             if self.__inner:
@@ -105,6 +107,7 @@ class Scroll_Grid():
                     lines.append(f"{indent}  - [Missing Item: {sub_name}]")
         return lines
     
+
 
 
 

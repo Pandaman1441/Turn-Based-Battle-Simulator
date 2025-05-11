@@ -1,4 +1,3 @@
-
 import copy
 import math
 from Skill_Loader import load_skills
@@ -6,11 +5,11 @@ from item_loader import load_items
 
 # character template
 class Character:
-
     def __init__(self):
         self.__name = "Test"
         self.__level = 1
         self.__ex = 0
+        self.__gold = 0
         self.__base_stats = {
             "hp":       {"max": 500, "current": 500},      
             "pp":       {"max": 20, "current": 20},        
@@ -133,6 +132,21 @@ class Character:
     
     def get_loaded_inventory(self):
         return self.__loaded_inventory.copy()
+    
+    @property
+    def gold(self):
+        return self.__gold
+    
+    
+    def add_gold(self, value):
+        self.__gold += value
+
+    def take_gold(self, value):
+        if value > self.__gold:
+            return False            # flag if gold was taken successfully
+        else:
+            self.__gold -= value
+            return True
 
 # we can override a function to write it specifically for something or we can extend it using super().function()
 

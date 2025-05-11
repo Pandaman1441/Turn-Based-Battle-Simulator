@@ -1,6 +1,8 @@
 from character import Character
 import copy
 from Skill_Loader import load_skills
+from item_loader import load_items
+import math
 
 # deals mixed damge, scales on mp, and some resource. use more resource to empower abilities
 
@@ -9,6 +11,20 @@ class Artificer(Character):
         self.__name = "art"
         self.__level = 1
         self.__ex = 0
+        self.__gold = 350
+        self.__base_stats = {
+            "hp":       {"max": 500, "current": 500},      
+            "pp":       {"max": 20, "current": 20},        
+            "mp":       {"max": 10, "current": 10},       
+            "ag":       {"max": 10, "current": 10},        
+            "wp":       {"max": 10, "current": 10},       
+            "pr":       {"max": 10, "current": 10},    
+            "mr":       {"max": 10, "current": 10},        
+            "resource": {"max": 300, "current": 300},        
+            "accuracy": {"max": 80, "current": 80},
+            "crit_chance": {"max": 1, "current": 1},
+            "crit_dmg": {"max": 1.5, "current": 1.5}
+        }
         self.__stats = { 
             "hp":       {"max": 500, "current": 500},        # health points
             "pp":       {"max": 20, "current": 20},          # physical power
@@ -18,12 +34,14 @@ class Artificer(Character):
             "pr":       {"max": 10, "current": 10},          # physical resist
             "mr":       {"max": 10, "current": 10},          # magical resist
             "resource": {"max": 300, "current": 300},        # mana or other type of resource like rage
+            "accuracy": {"max": 80, "current": 80},
+            "crit_chance": {"max": 1, "current": 1},
+            "crit_dmg": {"max": 1.5, "current": 1.5}
         }
-        self.__accuracy = 80                                  # chance to hit
-        self.__crit_chance = 1
-        self.__crit_damage = 1.5
         self.__actives = ["basic attack"]
         self.__passives = []
+        self.__inventory = ["Buckler"]
+
         self.__basic_attack_modifier = {
             "hp":       0 ,  
             "pp":       1,    
@@ -36,6 +54,7 @@ class Artificer(Character):
         }
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
+        self.__loaded_inventory = load_items(self.__inventory)
         self.__icon = "Assests/class_icons/R.png"
 
 
@@ -50,6 +69,17 @@ class Artificer(Character):
         value = sum(self.__stats[stat]["current"] * mod for stat, mod in self.__basic_attack_modifier.items())
         return value
     
+    def update_stats(self):
+        old_stats = copy.deepcopy(self.__stats)
+        self.__stats = copy.deepcopy(self.__base_stats)
+        for item in self.__loaded_inventory:
+            i_stats = item.get_stats()
+            for stat, mod in i_stats.items():
+                self.__stats[stat]["max"] += mod 
+        for stat in self.__stats:
+            percentage = old_stats[stat]["current"] / old_stats[stat]["max"]
+            self.__stats[stat]["current"] = math.ceil(self.__stats[stat]["max"] * percentage)
+
     @property
     def stats(self):
         return copy.deepcopy(self.__stats)
@@ -64,33 +94,8 @@ class Artificer(Character):
         self.__stats[stat]["max"] = value
 
     @property
-    def accuracy(self):
-        return self.__accuracy
-    
-    def set_accuracy(self, value):
-        self.__accuracy = value
-    
-    @property
-    def crit_chance(self):
-        return self.__crit_chance
-    
-    def set_crit_chance(self, value):
-        self.__crit_chance = value
-    
-    @property
-    def crit_damage(self):
-        return self.__crit_damage
-    
-    def set_crit_damage(self, value):
-        self.__crit_damage = value
-
-    @property
     def name(self):
         return self.__name
-    
-    @property
-    def icon(self):
-        return self.__icon
 
     def get_actives(self):
         return self.__actives.copy()
@@ -120,4 +125,29 @@ class Artificer(Character):
         return self.__loaded_actives.copy()
 
     def get_loaded_passives(self):
-        return self.__loaded_passives.copy()
+        return self.__loaded_passives.copy() 
+    
+    def add_item(self, item=str):
+        self.__inventory.append(item)
+        self.__loaded_inventory = load_items(self.__inventory)
+    
+    def get_inventory(self):
+        return self.__inventory.copy()
+    
+    def get_loaded_inventory(self):
+        return self.__loaded_inventory.copy()
+    
+    @property
+    def gold(self):
+        return self.__gold
+    
+    
+    def add_gold(self, value):
+        self.__gold += value
+
+    def take_gold(self, value):
+        if value > self.__gold:
+            return False            # flag if gold was taken successfully
+        else:
+            self.__gold -= value
+            return True

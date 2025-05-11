@@ -9,13 +9,12 @@ class Shop:
         self.__back.selected(True)
         self.__party = button.Button("Party", (1210, 770), 200, 100)
         self.__pc = pc
-        self.__shop = scroll_grid.Scroll_Grid()
+        self.__shop = scroll_grid.Scroll_Grid(self.__pc)
         
 
         self.__inner = False                # inside shop list
         self.__outer = False                # hover shop list
         self.__inner_idx = 0                # shop selected index
-        
 
 
     def draw(self,screen):
@@ -23,10 +22,6 @@ class Shop:
         self.__back.draw(screen)
         self.__party.draw(screen)
         self.__shop.draw(screen)
-
-        
-        
-              
             
 
     def handle_event(self, event):
@@ -50,6 +45,8 @@ class Shop:
                 elif self.__shop.outer:
                     self.__shop.inner = True
                     self.__shop.inner_idx = 0
+                elif self.__party.get_selected():
+                    return "party"
                 
 
             elif event.key == pygame.K_LEFT:
