@@ -1,18 +1,75 @@
 import pygame
-from UI_backend import button
+from UI_backend import button, scroll_grid
+import Items
 
 
 class Shop:
     def __init__(self, pc):
-        self.button = button.Button("Place Holder", (620,450), 200, 100)
-        self.button.selected(True)
-        self.pc = pc
+        self.__back = button.Button("Back", (30,770), 200, 100)
+        self.__back.selected(True)
+        self.__party = button.Button("Party", (1210, 770), 200, 100)
+        self.__pc = pc
+        self.__shop = scroll_grid.Scroll_Grid()
+        
+
+        self.__inner = False                # inside shop list
+        self.__outer = False                # hover shop list
+        self.__inner_idx = 0                # shop selected index
+        
+
 
     def draw(self,screen):
         screen.fill("orange")
-        self.button.draw(screen)
+        self.__back.draw(screen)
+        self.__party.draw(screen)
+        self.__shop.draw(screen)
+
+        
+        
+              
+            
 
     def handle_event(self, event):
-        if event.key == pygame.K_RETURN:
-            if self.button.get_selected():
-                return "menu"
+        if event.key == pygame.K_ESCAPE:
+            if self.__shop.inner:
+                self.__back.selected(True)
+                self.__shop.outer = False
+                self.__shop.inner = False
+                self.__shop.inner_idx = 0
+                self.__party.selected(False)
+                for b in self.__shop.buttons:
+                    b.selected(False)
+        
+        if self.__shop.inner:
+            self.__shop.handle_event(event)
+
+        else:
+            if event.key == pygame.K_RETURN:
+                if self.__back.get_selected():
+                    return "menu"
+                elif self.__shop.outer:
+                    self.__shop.inner = True
+                    self.__shop.inner_idx = 0
+                
+
+            elif event.key == pygame.K_LEFT:
+                if not self.__shop.inner:
+                    if self.__shop.outer:
+                        self.__back.selected(True)
+                        self.__shop.outer = False
+                    elif self.__party.get_selected():
+                        self.__party.selected(False)
+                        self.__shop.outer = True
+                
+            elif event.key == pygame.K_RIGHT:
+                if not self.__shop.inner:
+                    if self.__back.get_selected():
+                        self.__shop.outer = True
+                        self.__back.selected(False)
+                    elif self.__shop.outer:
+                        self.__shop.outer = False
+                        self.__party.selected(True)
+            
+        
+        
+    

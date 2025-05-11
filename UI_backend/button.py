@@ -34,3 +34,6 @@ class Button:
 
     def get_selected(self):
         return self.__selected
+    
+    def move(self, position: tuple):
+        self.__x, self.__y = position

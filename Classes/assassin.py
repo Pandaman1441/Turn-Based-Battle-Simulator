@@ -35,7 +35,7 @@ class Assassin(Character):
         }
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
-        self.__icon = "Assests/64x64/tile000.png"
+        self.__icon = "Assests/class_icons/tile000.png"
 
 
     def __str__(self):

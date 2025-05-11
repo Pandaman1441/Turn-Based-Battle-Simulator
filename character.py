@@ -54,7 +54,7 @@ class Character:
         self.__loaded_passives = load_skills(self.__passives)
         self.__loaded_inventory = load_items(self.__inventory)
 
-
+ 
     def __str__(self):
         pass
 

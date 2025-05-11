@@ -36,7 +36,7 @@ class Artificer(Character):
         }
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
-        self.__icon = "Assests/64x64/R.png"
+        self.__icon = "Assests/class_icons/R.png"
 
 
     def __str__(self):
