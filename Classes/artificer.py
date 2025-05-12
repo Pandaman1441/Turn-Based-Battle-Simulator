@@ -40,7 +40,7 @@ class Artificer(Character):
         }
         self.__actives = ["basic attack"]
         self.__passives = []
-        self.__inventory = ["Buckler"]
+        self.__inventory = ["Buckler", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang"]
 
         self.__basic_attack_modifier = {
             "hp":       0 ,  
@@ -135,7 +135,7 @@ class Artificer(Character):
         return self.__inventory.copy()
     
     def get_loaded_inventory(self):
-        return self.__loaded_inventory.copy()
+        return self.__loaded_inventory
     
     @property
     def gold(self):

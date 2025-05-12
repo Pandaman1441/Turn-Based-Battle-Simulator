@@ -25,18 +25,10 @@ class Shop:
             
 
     def handle_event(self, event):
-        if event.key == pygame.K_ESCAPE:
-            if self.__shop.inner:
-                self.__back.selected(True)
-                self.__shop.outer = False
-                self.__shop.inner = False
-                self.__shop.inner_idx = 0
-                self.__party.selected(False)
-                for b in self.__shop.buttons:
-                    b.selected(False)
-        
         if self.__shop.inner:
-            self.__shop.handle_event(event)
+            r = self.__shop.handle_event(event)
+            if r:
+                self.__back.selected(True)
 
         else:
             if event.key == pygame.K_RETURN:
@@ -44,10 +36,18 @@ class Shop:
                     return "menu"
                 elif self.__shop.outer:
                     self.__shop.inner = True
-                    self.__shop.inner_idx = 0
+                    self.__shop.shop = True
                 elif self.__party.get_selected():
                     return "party"
-                
+
+            elif event.key == pygame.K_ESCAPE:
+                self.__back.selected(True)
+                self.__shop.outer = False
+                self.__shop.inner = False
+                self.__shop.inner_idx = 0
+                self.__party.selected(False)
+                for b in self.__shop.buttons:
+                    b.selected(False)    
 
             elif event.key == pygame.K_LEFT:
                 if not self.__shop.inner:

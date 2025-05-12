@@ -1,6 +1,5 @@
 from Classes import *
 import pygame
-import math
 from Screens import title
 import screen_manager
 
@@ -22,7 +21,7 @@ pc = None
 while intro:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                intro = False
+                intro = False 
                 running = False
             elif event.type == pygame.KEYDOWN:
                 pc = first.handle_event(event)
