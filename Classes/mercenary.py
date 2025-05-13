@@ -130,6 +130,10 @@ class Mercenary(Character):
         self.__inventory.append(item)
         self.__loaded_inventory = load_items(self.__inventory)
     
+    def remove_item(self, item=str):
+        self.__inventory.remove(item)
+        self.__loaded_inventory = load_items(self.__inventory)
+    
     def get_inventory(self):
         return self.__inventory.copy()
     

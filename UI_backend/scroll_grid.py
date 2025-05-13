@@ -1,7 +1,7 @@
 import pygame
 import Items
 from UI_backend import item_icon
-
+import math
 
 
 class Scroll_Grid():
@@ -85,6 +85,9 @@ class Scroll_Grid():
         pygame.draw.line(screen, (240,240,240), (720,406), (1412, 406), 3)      # item display from inventory
         pygame.draw.line(screen, (240,240,240), (1067,26), (1067, 406),3)       # item display from item info
 
+        pc_gold = self.__font.render(str(self.__pc.gold), 1, (255,255,255))
+        screen.blit(pc_gold, (750,730))
+
         for b in self.__buttons:                                                # shop list buttons
             if self.__mode == "shop":
                 self.__buttons[self.__inner_idx].selected(True)
@@ -92,24 +95,45 @@ class Scroll_Grid():
                 b.selected(False)
             b.draw(screen)  
 
-        for b in self.__inv_buttons:                                            # Inventory buttons
-            if self.__mode == "inventory":
-                self.__inv_buttons[self.__inv_idx].selected(True)
-            else:
-                b.selected(False)
-            b.draw(screen)
+        if self.__inv_buttons:
+            for b in self.__inv_buttons:                                            # Inventory buttons
+                if self.__mode == "inventory":
+                    self.__inv_buttons[self.__inv_idx].selected(True)
+                else:
+                    b.selected(False)
+                b.draw(screen)
 
         if self.__inner:                                                        # hovered item
             if self.__mode == "shop":
                 i = self.buttons[self.__inner_idx].item 
                 self.item_display(i, screen)
             elif self.__mode == "inventory":
-                i = self.__inv_buttons[self.__inv_idx].item 
-                self.item_display(i, screen)
+                if self.__inv_buttons:
+                    i = self.__inv_buttons[self.__inv_idx].item 
+                    self.item_display(i, screen)
 
     def item_display(self, i, screen):  
-        text = self.__font.render(i.name, 1, (255,255,255))
-        screen.blit(text, (730, 120))
+        x = 1080
+        y = 80
+        name = self.__font.render(i.name, 1, (255,255,255))
+        screen.blit(name, (1080, 50))
+
+        cost = self.__font.render(str(i.cost), 1, (255,255,255))
+        cost_rect = cost.get_rect()
+        cost_rect.topright = (1400, 50)
+        screen.blit(cost, cost_rect)
+        for stat in i.stats:
+            print(f"{stat} : {i.stats[stat]}")
+            att = self.__font.render(stat, 1, (255,255,255))
+            y += 40
+            screen.blit(att, (x,y))
+
+            value = self.__font.render(str(i.stats[stat]), 1, (255,255,255))
+            screen.blit(value, (x +50 ,y))
+
+        desc = self.__font.render(i.description, 1, (255,255,255))
+        screen.blit(desc, (1080, 300))
+
         if i.build:
             h = self.get_build_path(i.name,self.__item_list)
             y = 160
@@ -142,7 +166,7 @@ class Scroll_Grid():
 
             elif self.__mode == "item":
                 self.__mode = "none"    
-
+# --------------------------------------------------------------------------------
         elif self.__mode == "shop":
             ps = self.__inner_idx
             total = len(self.__buttons)
@@ -159,7 +183,7 @@ class Scroll_Grid():
             elif event.key == pygame.K_DOWN:
                 row = (row + 1) % rows
             elif event.key == pygame.K_UP:
-                row = (row - 1 + rows) % rows
+                row = (row - 1 + rows) % rows  
 
             self.__buttons[ps].selected(False)
 
@@ -170,35 +194,45 @@ class Scroll_Grid():
 
             self.__inner_idx = value
             self.__buttons[value].selected(True)
-        
+
+            if event.key == pygame.K_RETURN:
+                self.buy_item(self.buttons[self.__inner_idx].item)  
+
+# --------------------------------------------------------------------------------
         elif self.__mode == "inventory":
-            ps = self.__inv_idx
-            total = len(self.__inv_buttons)
-            cols = self.__cols
-            rows = (total + cols - 1) // cols
+            if self.__inv_buttons:
+                ps = self.__inv_idx
+                total = len(self.__inv_buttons)
+                cols = self.__cols
+                rows = (total + cols - 1) // cols
 
-            row = ps // cols
-            col = ps % cols
+                row = ps // cols
+                col = ps % cols
 
-            if event.key == pygame.K_RIGHT:
-                col = (col + 1) % cols
-            elif event.key == pygame.K_LEFT:
-                col = (col - 1 + cols) % cols
-            elif event.key == pygame.K_DOWN:
-                row = (row + 1) % rows
-            elif event.key == pygame.K_UP:
-                row = (row - 1 + rows) % rows
+                if event.key == pygame.K_RIGHT:
+                    col = (col + 1) % cols
+                elif event.key == pygame.K_LEFT:
+                    col = (col - 1 + cols) % cols
+                elif event.key == pygame.K_DOWN:
+                    row = (row + 1) % rows
+                elif event.key == pygame.K_UP:
+                    row = (row - 1 + rows) % rows
 
-            self.__inv_buttons[ps].selected(False)
+                self.__inv_buttons[ps].selected(False)
 
-            # Clamp to valid index
-            value = row * cols + col
-            if value >= total:
-                value = total - 1  # prevent out-of-range index
+                # Clamp to valid index
+                value = row * cols + col
+                if value >= total:
+                    value = total - 1  # prevent out-of-range index
 
-            self.__inv_idx = value
-            self.__inv_buttons[value].selected(True)
+                self.__inv_idx = value
+                self.__inv_buttons[value].selected(True)
 
+                if event.key == pygame.K_RETURN:
+                    self.sell_item(self.__inv_buttons[self.__inv_idx].item)
+
+            
+# --------------------------------------------------------------------------------
         else:
             if event.key == pygame.K_RETURN:
                 if self.__shop:
@@ -242,8 +276,24 @@ class Scroll_Grid():
                     lines.append(f"{indent}  - [Missing Item: {sub_name}]")
         return lines
     
+    def buy_item(self, i):
+        if i.cost > self.__pc.gold:
+            print("not enough gold")
+        else:
+            self.__pc.take_gold(i.cost)
+            self.__pc.add_item(i.name)
 
-
+    def sell_item(self, i):
+        value = math.ceil(i.cost * .65)
+        print(i.cost)
+        print(value)
+        if self.__inv_buttons:
+            self.__inv_idx = 0
+        else:
+            self.__inv_idx = None
+        self.__pc.add_gold(value)
+        self.__pc.remove_item(i.name)
+        
 
 
 

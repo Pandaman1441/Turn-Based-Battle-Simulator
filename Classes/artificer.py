@@ -11,7 +11,7 @@ class Artificer(Character):
         self.__name = "art"
         self.__level = 1
         self.__ex = 0
-        self.__gold = 350
+        self.__gold = 3500
         self.__base_stats = {
             "hp":       {"max": 500, "current": 500},      
             "pp":       {"max": 20, "current": 20},        
@@ -40,7 +40,7 @@ class Artificer(Character):
         }
         self.__actives = ["basic attack"]
         self.__passives = []
-        self.__inventory = ["Buckler", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang", "Razor Fang"]
+        self.__inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
 
         self.__basic_attack_modifier = {
             "hp":       0 ,  
@@ -137,6 +137,10 @@ class Artificer(Character):
     def get_loaded_inventory(self):
         return self.__loaded_inventory
     
+    def remove_item(self, item=str):
+        self.__inventory.remove(item)
+        self.__loaded_inventory = load_items(self.__inventory)
+    
     @property
     def gold(self):
         return self.__gold
@@ -146,6 +150,8 @@ class Artificer(Character):
         self.__gold += value
 
     def take_gold(self, value):
+        print(f"self gold: {self.__gold}")
+        print(f"item cost: {value}")
         if value > self.__gold:
             return False            # flag if gold was taken successfully
         else:
