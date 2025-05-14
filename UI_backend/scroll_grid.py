@@ -123,7 +123,6 @@ class Scroll_Grid():
         cost_rect.topright = (1400, 50)
         screen.blit(cost, cost_rect)
         for stat in i.stats:
-            print(f"{stat} : {i.stats[stat]}")
             att = self.__font.render(stat, 1, (255,255,255))
             y += 40
             screen.blit(att, (x,y))
@@ -135,12 +134,12 @@ class Scroll_Grid():
         screen.blit(desc, (1080, 300))
 
         if i.build:
-            h = self.get_build_path(i.name,self.__item_list)
-            y = 160
-            for line in h:
-                line_surf = self.__font.render(line, 1, (220, 220, 220))
-                screen.blit(line_surf, (730, y))
-                y += 25
+            self.build_tree(screen,i.name,self.__item_list, 850,30)
+            # y = 160
+            # for line in h:
+            #     line_surf = self.__font.render(line, 1, (220, 220, 220))
+            #     screen.blit(line_surf, (730, y))
+            #     y += 25
         
     def handle_event(self, event):
         if event.key == pygame.K_ESCAPE:
@@ -276,6 +275,29 @@ class Scroll_Grid():
                     lines.append(f"{indent}  - [Missing Item: {sub_name}]")
         return lines
     
+     
+    def build_tree(self, screen, item_name, shop_items, x,y, depth=0, max_width=300):
+        i = shop_items[item_name]
+
+        b = item_icon.div(i, (x,y))
+        b.draw(screen)
+        if not shop_items[item_name].build:
+            return
+        else:
+            num = len(i.build)
+            spacing = max_width // max(1,num)
+            start_x = x - ((num -1) * spacing //2)
+            child_y = y +135
+            for i, sub_name in enumerate(i.build):
+                child_x = start_x + i * spacing
+                pygame.draw.line(screen,(200,200,200), (x+40, y + 90), (x+40, y+110),2)
+                pygame.draw.line(screen,(200,200,200), (x+40, y + 110), (child_x+40, y+110),2)
+                pygame.draw.line(screen,(200,200,200), (child_x+40, y + 110), (child_x+40, child_y),2)
+
+                self.build_tree(screen,sub_name,shop_items, child_x,child_y,depth +1, spacing)
+
+
+
     def buy_item(self, i):
         if i.cost > self.__pc.gold:
             print("not enough gold")
@@ -285,8 +307,6 @@ class Scroll_Grid():
 
     def sell_item(self, i):
         value = math.ceil(i.cost * .65)
-        print(i.cost)
-        print(value)
         if self.__inv_buttons:
             self.__inv_idx = 0
         else:
