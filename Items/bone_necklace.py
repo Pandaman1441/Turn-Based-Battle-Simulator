@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Bone_Necklace(Item):
     def __init__(self):
         self.__name = "Bone Necklace"
-        self.__stats = {}
+        self.__stats = {
+            "wp": 15
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

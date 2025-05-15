@@ -35,7 +35,7 @@ class Artificer(Character):
             "mr":       {"max": 10, "current": 10},          # magical resist
             "resource": {"max": 300, "current": 300},        # mana or other type of resource like rage
             "accuracy": {"max": 80, "current": 80},
-            "crit_chance": {"max": 1, "current": 1},
+            "crit_chance": {"max": 0, "current": 0},
             "crit_dmg": {"max": 1.5, "current": 1.5}
         }
         self.__actives = ["basic attack"]

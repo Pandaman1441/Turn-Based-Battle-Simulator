@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Mana_Crystal(Item):
     def __init__(self):
         self.__name = "Mana Crystal"
-        self.__stats = {}
+        self.__stats = {
+            "r": 400
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

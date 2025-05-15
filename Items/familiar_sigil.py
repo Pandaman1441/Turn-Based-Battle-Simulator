@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Familiar_Sigil(Item):
     def __init__(self):
         self.__name = "Familiar Sigil"
-        self.__stats = {}
+        self.__stats = {
+            "wp": 25
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

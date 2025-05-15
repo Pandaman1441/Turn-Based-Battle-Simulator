@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Buckler(Item):
     def __init__(self):
         self.__name = "Buckler"
-        self.__stats = {}
+        self.__stats = {
+            "pr": 15
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

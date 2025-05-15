@@ -3,10 +3,13 @@ from Items.item_class import Item
 
 
 
-class Mana_Crystal(Item):
+class Horned_Helm(Item):
     def __init__(self):
-        self.__name = "Mana Crystal"
-        self.__stats = {}
+        self.__name = "Horned Helm"
+        self.__stats = {
+            "pp": 30,
+            "pr": 25
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

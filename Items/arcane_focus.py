@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Arcane_Focus(Item):
     def __init__(self):
         self.__name = "Arcane Focus"
-        self.__stats = {}
+        self.__stats = {
+            "mp": 25
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []

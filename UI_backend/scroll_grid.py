@@ -26,6 +26,9 @@ class Scroll_Grid():
         self.__inventory = False
         self.__item = False
         self.__shop = False
+        self.__prev = "none"
+        self.__item_tree = []
+        self.__tree_idx = 0
         
 
     def draw(self,screen):
@@ -105,41 +108,19 @@ class Scroll_Grid():
 
         if self.__inner:                                                        # hovered item
             if self.__mode == "shop":
-                i = self.buttons[self.__inner_idx].item 
+                i = self.__buttons[self.__inner_idx].item 
                 self.item_display(i, screen)
             elif self.__mode == "inventory":
                 if self.__inv_buttons:
                     i = self.__inv_buttons[self.__inv_idx].item 
                     self.item_display(i, screen)
-
-    def item_display(self, i, screen):  
-        x = 1080
-        y = 80
-        name = self.__font.render(i.name, 1, (255,255,255))
-        screen.blit(name, (1080, 50))
-
-        cost = self.__font.render(str(i.cost), 1, (255,255,255))
-        cost_rect = cost.get_rect()
-        cost_rect.topright = (1400, 50)
-        screen.blit(cost, cost_rect)
-        for stat in i.stats:
-            att = self.__font.render(stat, 1, (255,255,255))
-            y += 40
-            screen.blit(att, (x,y))
-
-            value = self.__font.render(str(i.stats[stat]), 1, (255,255,255))
-            screen.blit(value, (x +50 ,y))
-
-        desc = self.__font.render(i.description, 1, (255,255,255))
-        screen.blit(desc, (1080, 300))
-
-        if i.build:
-            self.build_tree(screen,i.name,self.__item_list, 850,30)
-            # y = 160
-            # for line in h:
-            #     line_surf = self.__font.render(line, 1, (220, 220, 220))
-            #     screen.blit(line_surf, (730, y))
-            #     y += 25
+            elif self.__mode == "item":
+                if self.__prev == "shop":
+                    i = self.__buttons[self.__inner_idx].item
+                    self.item_display(i,screen)
+                elif self.__prev == "inventory":
+                    i = self.__inv_buttons[self.__inv_idx].item 
+                    self.item_display(i, screen)
         
     def handle_event(self, event):
         if event.key == pygame.K_ESCAPE:
@@ -164,7 +145,7 @@ class Scroll_Grid():
                     b.selected(False)
 
             elif self.__mode == "item":
-                self.__mode = "none"    
+                self.__mode = self.__prev    
 # --------------------------------------------------------------------------------
         elif self.__mode == "shop":
             ps = self.__inner_idx
@@ -195,7 +176,9 @@ class Scroll_Grid():
             self.__buttons[value].selected(True)
 
             if event.key == pygame.K_RETURN:
-                self.buy_item(self.buttons[self.__inner_idx].item)  
+                self.__prev = "shop"
+                self.__mode = "item"
+                # self.buy_item(self.buttons[self.__inner_idx].item)  
 
 # --------------------------------------------------------------------------------
         elif self.__mode == "inventory":
@@ -228,9 +211,15 @@ class Scroll_Grid():
                 self.__inv_buttons[value].selected(True)
 
                 if event.key == pygame.K_RETURN:
-                    self.sell_item(self.__inv_buttons[self.__inv_idx].item)
+                    self.__prev = "inventory"
+                    self.__mode = "item"
 
-            
+                    # self.sell_item(self.__inv_buttons[self.__inv_idx].item)
+
+# --------------------------------------------------------------------------------
+        elif self.__mode == "item":
+            return
+
 # --------------------------------------------------------------------------------
         else:
             if event.key == pygame.K_RETURN:
@@ -238,8 +227,6 @@ class Scroll_Grid():
                     self.__mode = "shop"
                 elif self.__inventory:
                     self.__mode = "inventory"
-                elif self.__item:
-                    self.__mode = "item"
                 
 
             elif event.key == pygame.K_LEFT:
@@ -261,20 +248,32 @@ class Scroll_Grid():
 
 
 
-    def get_build_path(self, item_name, shop_items, depth=0):
-        lines = []
-        item = shop_items[item_name]
-        indent = "  " * depth
-        lines.append(f"{indent}- {item.name}")
 
-        if item.build:
-            for sub_name in item.build:
-                if sub_name in shop_items:
-                    lines.extend(self.get_build_path(sub_name, shop_items, depth + 1))
-                else:
-                    lines.append(f"{indent}  - [Missing Item: {sub_name}]")
-        return lines
-    
+    def item_display(self, i, screen):  
+        x = 1080
+        y = 80
+        name = self.__font.render(i.name, 1, (255,255,255))                     # item name
+        screen.blit(name, (1080, 50))
+
+        cost = self.__font.render(str(i.cost), 1, (255,255,255))                # item cost
+        cost_rect = cost.get_rect()
+        cost_rect.topright = (1400, 50)                                         # right aligned
+        screen.blit(cost, cost_rect)
+        
+        for stat in i.stats:                                                    # item stat values
+            att = self.__font.render(str(stat), 1, (255,255,255))
+            y += 40
+            screen.blit(att, (x+60,y))
+
+            value = self.__font.render(str(i.stats[stat]), 1, (255,255,255))
+            screen.blit(value, (x,y))
+
+        desc = self.__font.render(i.description, 1, (255,255,255))              # item lore thing
+        screen.blit(desc, (1080, 300))
+
+        # if i.build:
+        self.build_tree(screen,i.name,self.__item_list, 850,30)
+                
      
     def build_tree(self, screen, item_name, shop_items, x,y, depth=0, max_width=300):
         i = shop_items[item_name]
@@ -290,9 +289,9 @@ class Scroll_Grid():
             child_y = y +135
             for i, sub_name in enumerate(i.build):
                 child_x = start_x + i * spacing
-                pygame.draw.line(screen,(200,200,200), (x+40, y + 90), (x+40, y+110),2)
-                pygame.draw.line(screen,(200,200,200), (x+40, y + 110), (child_x+40, y+110),2)
-                pygame.draw.line(screen,(200,200,200), (child_x+40, y + 110), (child_x+40, child_y),2)
+                pygame.draw.line(screen,(200,200,200), (x+40, y + 90), (x+40, y+110),2)                     # |
+                pygame.draw.line(screen,(200,200,200), (x+40, y + 110), (child_x+40, y+110),2)              # -
+                pygame.draw.line(screen,(200,200,200), (child_x+40, y + 110), (child_x+40, child_y),2)      # |
 
                 self.build_tree(screen,sub_name,shop_items, child_x,child_y,depth +1, spacing)
 

@@ -6,7 +6,9 @@ from Items.item_class import Item
 class Razor_Fang(Item):
     def __init__(self):
         self.__name = "Razor Fang"
-        self.__stats = {}
+        self.__stats = {
+            "crit_chance": 5
+        }
         self.__description = "test."
         self.__cost = 1
         self.__build = []
