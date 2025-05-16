@@ -43,6 +43,8 @@ class Scroll_Grid():
 
         inventory = self.__pc.get_loaded_inventory()
         self.__inv_buttons = []
+        self.__item_tree = []
+
 
         for item in inventory:
             b= item_icon.div(item, (50,50))
@@ -121,6 +123,8 @@ class Scroll_Grid():
                 elif self.__prev == "inventory":
                     i = self.__inv_buttons[self.__inv_idx].item 
                     self.item_display(i, screen)
+
+
         
     def handle_event(self, event):
         if event.key == pygame.K_ESCAPE:
@@ -275,11 +279,15 @@ class Scroll_Grid():
         self.build_tree(screen,i.name,self.__item_list, 850,30)
                 
      
-    def build_tree(self, screen, item_name, shop_items, x,y, depth=0, max_width=300):
+    def build_tree(self, screen, item_name, shop_items, x,y, depth=0, max_width=300, pos=0):  
         i = shop_items[item_name]
-
+# dictionary keying a div to a tuple of (x, depth)
+# x is a var we pass through the recursion and increment in the for i, sub_name loop below
+        
         b = item_icon.div(i, (x,y))
         b.draw(screen)
+        self.__item_tree.append(b)
+
         if not shop_items[item_name].build:
             return
         else:
