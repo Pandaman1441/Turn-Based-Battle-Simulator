@@ -12,7 +12,7 @@ class Heartstone(Item):
         self.__description = "test."
         self.__cost = 450
         self.__build = []
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/potions/tile008.png"
 
     @property
     def stats(self):

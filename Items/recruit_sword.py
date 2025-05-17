@@ -12,7 +12,7 @@ class Recruit_Sword(Item):
         self.__description = "test."
         self.__cost = 400
         self.__build = []
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/tile014.png"
 
     @property
     def stats(self):

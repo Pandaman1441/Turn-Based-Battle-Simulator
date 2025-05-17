@@ -13,7 +13,7 @@ class Marcher_Charm(Item):
         self.__description = "test."
         self.__cost = 1
         self.__build = []
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/general/tile009.png"
 
     @property
     def stats(self):

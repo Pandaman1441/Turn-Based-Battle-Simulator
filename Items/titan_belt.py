@@ -13,7 +13,7 @@ class Titan_Belt(Item):
         self.__description = "test."
         self.__cost = 1250
         self.__build = ["Recruit's Sword", "Heartstone"]
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/general/tile009.png"
 
     @property
     def stats(self):

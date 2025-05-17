@@ -33,6 +33,13 @@ class div:
         cost_rect = cost.get_rect(centerx=border.centerx,centery=val)
         screen.blit(cost, cost_rect)
 
+        x = pygame.image.load(self.__item.icon)
+        icon = pygame.Surface.convert_alpha(x)
+        icon_rect = icon.get_rect(center = border.center)
+        screen.blit(icon, icon_rect)
+
+
+
 
     def selected(self, value):
         self.__selected = value

@@ -38,13 +38,13 @@ class b_UI:
 
         border = pygame.Rect((20, 650), (1400, 230))
         pygame.draw.rect(screen, (240,240,240), border, 2)
-        x = pygame.image.load(self.__pc.icon)
-    
         icon_b = pygame.Rect((20, 576), (70,70))
+        pygame.draw.rect(screen, (240,240,240), icon_b, 2)
+
+        x = pygame.image.load(self.__pc.icon)
         icon = pygame.Surface.convert_alpha(x)
         icon_rect = icon.get_rect(center = icon_b.center)
         screen.blit(icon, icon_rect)
-        pygame.draw.rect(screen, (240,240,240), icon_b, 2)
         
         health_values = f'HP: {self.__pc.get_stat("hp")["current"]} / {self.__pc.get_stat("hp")["max"]}'  
         health = self.__font.render(health_values, 1, (255,255,255))

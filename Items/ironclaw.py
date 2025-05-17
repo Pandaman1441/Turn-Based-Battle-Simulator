@@ -13,7 +13,7 @@ class Ironclaw(Item):
         self.__description = "A people never forgotten"
         self.__cost = 3200
         self.__build = ["Titan's Belt", "Savage Axe", "Heartstone"]
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/tile069.png"
 
 
     @property

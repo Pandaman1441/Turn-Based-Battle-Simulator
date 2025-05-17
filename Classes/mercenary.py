@@ -40,6 +40,8 @@ class Mercenary(Character):
         }
         self.__actives = ["basic attack"]
         self.__passives = []
+        self.__inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
+
         self.__basic_attack_modifier = {
             "hp":       0 ,  
             "pp":       1,    
@@ -154,3 +156,7 @@ class Mercenary(Character):
         else:
             self.__gold -= value
             return True
+        
+    @property
+    def icon(self):
+        return self.__icon

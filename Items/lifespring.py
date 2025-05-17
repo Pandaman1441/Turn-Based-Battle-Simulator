@@ -12,7 +12,7 @@ class Lifespring(Item):
         self.__description = "test."
         self.__cost = 1
         self.__build = []
-        self.__icon = "Assests/item_icons/R.png"
+        self.__icon = "Assests/item_icons/misc/tile007.png"
 
     @property
     def stats(self):
