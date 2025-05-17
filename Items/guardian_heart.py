@@ -13,7 +13,7 @@ class Guardian_Heart(Item):
         self.__description = "test."
         self.__cost = 1
         self.__build = []
-        self.__icon = "Assests/item_icons/tile005"
+        self.__icon = "Assests/item_icons/tile005.png"
 
     @property
     def stats(self):

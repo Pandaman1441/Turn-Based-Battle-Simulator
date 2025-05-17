@@ -13,7 +13,7 @@ class Dirk(Item):
         self.__description = "test."
         self.__cost = 1
         self.__build = []
-        self.__icon = "Assests/item_icons/tile084"
+        self.__icon = "Assests/item_icons/tile084.png"
 
     @property
     def stats(self):

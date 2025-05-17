@@ -267,7 +267,7 @@ class Scroll_Grid():
         for stat in i.stats:                                                    # item stat values
             att = self.__font.render(str(stat), 1, (255,255,255))
             y += 40
-            screen.blit(att, (x+60,y))
+            screen.blit(att, (x+70,y))
 
             value = self.__font.render(str(i.stats[stat]), 1, (255,255,255))
             screen.blit(value, (x,y))
