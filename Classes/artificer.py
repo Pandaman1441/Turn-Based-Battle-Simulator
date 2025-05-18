@@ -157,3 +157,7 @@ class Artificer(Character):
         else:
             self.__gold -= value
             return True
+        
+    @property
+    def icon(self):
+        return self.__icon

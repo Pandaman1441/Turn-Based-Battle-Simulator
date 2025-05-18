@@ -2,6 +2,7 @@ import pygame
 import Items
 from UI_backend import item_icon
 import math
+from UI_backend import node
 
 
 class Scroll_Grid():
@@ -19,7 +20,7 @@ class Scroll_Grid():
         self.__inner = False                # inside shop
         self.__outer = False                # hover shop
         self.__inner_idx = 0             # shop selected index
-        self.__cols = 5
+        self.__cols = 5                     # 5 by 6 
         self.__mode = "none"
         self.__inv_buttons = []
         self.__inv_idx = 0
@@ -27,9 +28,10 @@ class Scroll_Grid():
         self.__item = False
         self.__shop = False
         self.__prev = "none"
-        self.__item_tree = []
-        self.__tree_idx = 0
-        
+        self.__item_tree = {}
+        self.__tree_idx = (0,0)                 # tuple
+        self.__selected_node = None
+        self.__visible_offset = 0
 
     def draw(self,screen):
         for idx, btn in enumerate(self.__buttons):                              # listing items in shop
@@ -43,7 +45,6 @@ class Scroll_Grid():
 
         inventory = self.__pc.get_loaded_inventory()
         self.__inv_buttons = []
-        self.__item_tree = []
 
 
         for item in inventory:
@@ -93,6 +94,8 @@ class Scroll_Grid():
         pc_gold = self.__font.render(str(self.__pc.gold), 1, (255,255,255))
         screen.blit(pc_gold, (750,730))
 
+        visible_items = self.__buttons[self.__visible_offset : self.__visible_offset + 30]
+
         for b in self.__buttons:                                                # shop list buttons
             if self.__mode == "shop":
                 self.__buttons[self.__inner_idx].selected(True)
@@ -108,21 +111,56 @@ class Scroll_Grid():
                     b.selected(False)
                 b.draw(screen)
 
+        
+
         if self.__inner:                                                        # hovered item
             if self.__mode == "shop":
                 i = self.__buttons[self.__inner_idx].item 
                 self.item_display(i, screen)
+                self.build_tree(screen,i.name, 850,30)
+                if self.__item_tree:
+                        for b in self.__item_tree.values():
+                            b.item.draw(screen)
             elif self.__mode == "inventory":
                 if self.__inv_buttons:
                     i = self.__inv_buttons[self.__inv_idx].item 
                     self.item_display(i, screen)
+                    self.build_tree(screen,i.name, 850,30)
+                    if self.__item_tree:
+                        for b in self.__item_tree.values():
+                            b.item.draw(screen)
             elif self.__mode == "item":
                 if self.__prev == "shop":
                     i = self.__buttons[self.__inner_idx].item
-                    self.item_display(i,screen)
+                    self.item_display(i, screen)
+                    self.build_tree(screen,i.name, 850,30)
+                    if self.__item_tree:
+                        for b in self.__item_tree.values():
+                            b.item.draw(screen)
                 elif self.__prev == "inventory":
                     i = self.__inv_buttons[self.__inv_idx].item 
                     self.item_display(i, screen)
+                    self.build_tree(screen,i.name, 850,30)
+                    if self.__item_tree:
+                        for b in self.__item_tree.values():
+                            b.item.draw(screen)
+            
+
+
+        
+                    
+        if self.__mode == "item":                                       # make the tree then display the hovered item
+            self.__selected_node = self.__item_tree[self.__tree_idx]
+            self.__selected_node.item.selected(True)
+            if self.__item_tree:
+                for b in self.__item_tree.values():
+                    b.item.draw(screen)
+
+        
+
+        # for x,i in self.__item_tree.items():
+        #     print(f"{x} === {i.item.item.name}")
+
 
 
         
@@ -222,7 +260,31 @@ class Scroll_Grid():
 
 # --------------------------------------------------------------------------------
         elif self.__mode == "item":
-            return
+            x,y = self.__tree_idx
+            prev_key = (x,y)
+            new_key = (x,y)
+            attempt = None
+
+            if event.key == pygame.K_RIGHT:
+                attempt = (x+1,y)
+            elif event.key == pygame.K_LEFT:
+                attempt = (x-1,y)
+            elif event.key == pygame.K_DOWN:
+                if self.__selected_node.children:
+                    attempt = self.__selected_node.children[0].position
+            elif event.key == pygame.K_UP:
+                if self.__selected_node.parent:
+                    attempt = self.__selected_node.parent.position
+            
+            if attempt in self.__item_tree:
+                new_key = attempt
+
+            self.__item_tree[prev_key].item.selected(False)
+            self.__item_tree[new_key].item.selected(True)
+            
+            self.__selected_node = self.__item_tree[new_key]
+            self.__tree_idx = self.__selected_node.position
+
 
 # --------------------------------------------------------------------------------
         else:
@@ -276,32 +338,39 @@ class Scroll_Grid():
         screen.blit(desc, (1080, 300))
 
         # if i.build:
-        self.build_tree(screen,i.name,self.__item_list, 850,30)
                 
      
-    def build_tree(self, screen, item_name, shop_items, x,y, depth=0, max_width=300, pos=0):  
-        i = shop_items[item_name]
+    def build_tree(self, screen, item_name, x, y, parent=None, depth=0, max_width=300, pos=0):  
+        if depth == 0:
+            self.__item_tree = {}
+        i = self.__item_list[item_name]
 # dictionary keying a div to a tuple of (x, depth)
 # x is a var we pass through the recursion and increment in the for i, sub_name loop below
         
         b = item_icon.div(i, (x,y))
-        b.draw(screen)
-        self.__item_tree.append(b)
+        key = (pos, depth)
+        n = node.Node(key,b,parent)
+        if parent:
+            parent.add_child(n)
+        self.__item_tree[key] = n
 
-        if not shop_items[item_name].build:
+        if not self.__item_list[item_name].build:
             return
         else:
             num = len(i.build)
             spacing = max_width // max(1,num)
             start_x = x - ((num -1) * spacing //2)
             child_y = y +135
+            pos = pos
             for i, sub_name in enumerate(i.build):
                 child_x = start_x + i * spacing
+
                 pygame.draw.line(screen,(200,200,200), (x+40, y + 90), (x+40, y+110),2)                     # |
                 pygame.draw.line(screen,(200,200,200), (x+40, y + 110), (child_x+40, y+110),2)              # -
                 pygame.draw.line(screen,(200,200,200), (child_x+40, y + 110), (child_x+40, child_y),2)      # |
 
-                self.build_tree(screen,sub_name,shop_items, child_x,child_y,depth +1, spacing)
+                self.build_tree(screen,sub_name, child_x,child_y, n, depth +1, spacing,pos)
+                pos += 1
 
 
 

@@ -7,10 +7,10 @@ class Mystic_Tome(Item):
     def __init__(self):
         self.__name = "Mystic_Tome"
         self.__stats = {
-            "mp": 15
+            "mp": 25
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 450
         self.__build = []
         self.__icon = "Assests/item_icons/tile019.png"
 

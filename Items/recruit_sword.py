@@ -7,10 +7,10 @@ class Recruit_Sword(Item):
     def __init__(self):
         self.__name = "Recruit's Sword"
         self.__stats = {
-            "pp" : 15
+            "pp" : 10
         }
         self.__description = "test."
-        self.__cost = 400
+        self.__cost = 300
         self.__build = []
         self.__icon = "Assests/item_icons/tile014.png"
 

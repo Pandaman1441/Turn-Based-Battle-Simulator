@@ -10,7 +10,7 @@ class Initiate_Dagger(Item):
             "ag": 15
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 500
         self.__build = []
         self.__icon = "Assests/item_icons/tile028.png"
 

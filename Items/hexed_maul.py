@@ -7,11 +7,11 @@ class Hexed_Maul(Item):
     def __init__(self):
         self.__name = "Hexed Maul"
         self.__stats = {
-            "pp": 35,
-            "mr": 30
+            "pp": 20,
+            "mr": 20
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 950
         self.__build = []
         self.__icon = "Assests/item_icons/tile030.png"
 

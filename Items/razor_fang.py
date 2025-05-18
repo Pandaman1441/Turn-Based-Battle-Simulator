@@ -10,7 +10,7 @@ class Razor_Fang(Item):
             "crit_chance": 5
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 250
         self.__build = []
         self.__icon = "Assests/item_icons/general/tile002.png"
 

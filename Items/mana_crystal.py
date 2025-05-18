@@ -7,10 +7,10 @@ class Mana_Crystal(Item):
     def __init__(self):
         self.__name = "Mana Crystal"
         self.__stats = {
-            "r": 400
+            "r": 300
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 300
         self.__build = []
         self.__icon = "Assests/item_icons/potions/tile017.png"
 

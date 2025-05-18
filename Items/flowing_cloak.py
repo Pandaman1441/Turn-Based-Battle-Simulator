@@ -7,10 +7,10 @@ class Flowing_Cloak(Item):
     def __init__(self):
         self.__name = "Flowing Cloak"
         self.__stats = {
-            "ag": 25
+            "ag": 30
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 1000
         self.__build = []
         self.__icon = "Assests/item_icons/general/tile024.png"
 

@@ -7,10 +7,10 @@ class Heartstone(Item):
     def __init__(self):
         self.__name = "Heartstone"
         self.__stats = {
-            "hp": 500
+            "hp": 200
         }
         self.__description = "test."
-        self.__cost = 450
+        self.__cost = 400
         self.__build = []
         self.__icon = "Assests/item_icons/potions/tile008.png"
 

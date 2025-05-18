@@ -7,10 +7,10 @@ class Savage_Axe(Item):
     def __init__(self):
         self.__name = "Savage Axe"
         self.__stats = {
-            "pp": 30
+            "pp": 25
         }
         self.__description = "test."
-        self.__cost = 800
+        self.__cost = 750
         self.__build = []
         self.__icon = "Assests/item_icons/tile016.png"
 

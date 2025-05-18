@@ -7,11 +7,11 @@ class Veteran_Greatsword(Item):
     def __init__(self):
         self.__name = "Veteran's Greatsword"
         self.__stats = {
-            "pp": 40
+            "pp": 45
         }
         self.__description = "test."
-        self.__cost = 1
-        self.__build = []
+        self.__cost = 1350
+        self.__build = ["Recruit's Sword", "Savage Axe"]
         self.__icon = "Assests/item_icons/tile021.png"
 
     @property

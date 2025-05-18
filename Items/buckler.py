@@ -10,7 +10,7 @@ class Buckler(Item):
             "pr": 15
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 300
         self.__build = []
         self.__icon = "Assests/item_icons/tile011.png"
 

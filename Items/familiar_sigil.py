@@ -7,10 +7,10 @@ class Familiar_Sigil(Item):
     def __init__(self):
         self.__name = "Familiar Sigil"
         self.__stats = {
-            "wp": 25
+            "wp": 40
         }
         self.__description = "test."
-        self.__cost = 1
+        self.__cost = 700
         self.__build = []
         self.__icon = "Assests/item_icons/tile081.png"
 

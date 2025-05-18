@@ -8,10 +8,10 @@ class Titan_Belt(Item):
         self.__name = "Titan's Belt"
         self.__stats = {
             "pp": 20,
-            "hp": 650
+            "hp": 300
         }
         self.__description = "test."
-        self.__cost = 1250
+        self.__cost = 1200
         self.__build = ["Recruit's Sword", "Heartstone"]
         self.__icon = "Assests/item_icons/general/tile009.png"
 

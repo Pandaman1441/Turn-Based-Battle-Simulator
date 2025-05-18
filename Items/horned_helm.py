@@ -7,12 +7,12 @@ class Horned_Helm(Item):
     def __init__(self):
         self.__name = "Horned Helm"
         self.__stats = {
-            "pp": 30,
-            "pr": 25
+            "pp": 15,
+            "pr": 20
         }
         self.__description = "test."
-        self.__cost = 1
-        self.__build = []
+        self.__cost = 850
+        self.__build = ["Buckler", "Recruit's Sword"]
         self.__icon = "Assests/item_icons/tile054.png"
 
     @property
