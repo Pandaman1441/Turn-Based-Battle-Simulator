@@ -34,14 +34,20 @@ class Scroll_Grid():
         self.__visible_offset = 0
 
     def draw(self,screen):
-        for idx, btn in enumerate(self.__buttons):                              # listing items in shop
-            row = idx // self.__cols
-            col = idx % self.__cols
+        total = len(self.__buttons)
+        self.__visible_offset = max(0, min(self.__visible_offset, max(0, total - 30)))
+        visible_items = self.__buttons[self.__visible_offset : self.__visible_offset + 30]
 
+        for v_idx, btn in enumerate(visible_items):                              # listing items in shop
+            actual_idx = self.__visible_offset + v_idx
+            row = actual_idx // self.__cols
+            col = actual_idx % self.__cols
+
+            y = 50 + (row - (self.__visible_offset // self.__cols)) * (100 + 20)
             x = 50 + col * (100 + 20)
-            y = 50 + row * (100 + 20)
 
-            btn.move((x, y)) 
+            btn.move((x,y))
+
 
         inventory = self.__pc.get_loaded_inventory()
         self.__inv_buttons = []
@@ -60,6 +66,14 @@ class Scroll_Grid():
 
             btn.move((x,y))
 
+
+
+        scroll_bar = pygame.Rect(700, 50, 10, 600)                              # vertical bar
+        scroll_height = int(600 * (30 / len(self.__buttons)))                   # visible vs total
+        scroll_pos = int((600 - scroll_height) * (self.__visible_offset / (len(self.__buttons) - 30)))
+        pygame.draw.rect(screen, (180, 180, 180), scroll_bar)
+        pygame.draw.rect(screen, (240, 240, 240), (700, 50 + scroll_pos, 10, scroll_height))
+
         border = pygame.Rect((26,26), (1388, 736))                              # large border around whole shop
         pygame.draw.rect(screen, (240,240,240), border, 2)      
         shape = pygame.Surface((1384, 732), pygame.SRCALPHA)                    # inner shading of whole shop
@@ -72,7 +86,7 @@ class Scroll_Grid():
 
 
         if self.__shop:
-            shape = pygame.Surface((500,500), pygame.SRCALPHA)
+            shape = pygame.Surface((694,732), pygame.SRCALPHA)
             shape.fill((240,240,240, 20))
             screen.blit(shape,(28,28))
         
@@ -94,11 +108,11 @@ class Scroll_Grid():
         pc_gold = self.__font.render(str(self.__pc.gold), 1, (255,255,255))
         screen.blit(pc_gold, (750,730))
 
-        visible_items = self.__buttons[self.__visible_offset : self.__visible_offset + 30]
 
-        for b in self.__buttons:                                                # shop list buttons
+        for b in visible_items:                                                # shop list buttons
             if self.__mode == "shop":
-                self.__buttons[self.__inner_idx].selected(True)
+                if self.__visible_offset <= self.__inner_idx < self.__visible_offset + 30:
+                    self.__buttons[self.__inner_idx].selected(True) 
             else:
                 b.selected(False)
             b.draw(screen)  
@@ -187,7 +201,8 @@ class Scroll_Grid():
                     b.selected(False)
 
             elif self.__mode == "item":
-                self.__mode = self.__prev    
+                self.__mode = self.__prev
+                self.__tree_idx = (0,0)    
 # --------------------------------------------------------------------------------
         elif self.__mode == "shop":
             ps = self.__inner_idx
@@ -199,23 +214,61 @@ class Scroll_Grid():
             col = ps % cols
 
             if event.key == pygame.K_RIGHT:
-                col = (col + 1) % cols
+                col += 1
+                if row == rows - 1:
+                    last_row_count = total % cols if total % cols != 0 else cols
+                    if col >= last_row_count:
+                        col = 0
+                else:
+                    if col >= cols:
+                        col = 0
+
             elif event.key == pygame.K_LEFT:
-                col = (col - 1 + cols) % cols
+                col -= 1
+                if col < 0:
+                    if row == rows - 1:
+                        last_row_count = total % cols if total % cols != 0 else cols
+                        col = last_row_count - 1
+                    else:
+                        col = cols - 1
+
             elif event.key == pygame.K_DOWN:
-                row = (row + 1) % rows
+                row += 1
+                if row * cols + col >= total:
+                    row = 0
+
             elif event.key == pygame.K_UP:
-                row = (row - 1 + rows) % rows  
+                row -= 1
+                if row < 0:
+                    row = rows - 1
+
+
+            if row == rows - 1:
+                last_row_count = total % cols if total % cols != 0 else cols
+                if col >= last_row_count:
+                    col = last_row_count - 1
+
+            next_idx = row * cols + col
+            if next_idx >= total:
+                next_idx = total - 1
+
+            wrapped = abs(next_idx - ps) > self.__cols
+
+            if wrapped:
+                # Big jump
+                self.__visible_offset = min(max((next_idx // self.__cols) * self.__cols, 0), total - 30)
+            else:
+                # Small jump
+                if next_idx >= self.__visible_offset + 30:
+                    self.__visible_offset = min(self.__visible_offset + self.__cols, total - 30)
+                elif next_idx < self.__visible_offset:
+                    self.__visible_offset = max(self.__visible_offset - self.__cols, 0)
+
 
             self.__buttons[ps].selected(False)
-
-            # Clamp to valid index
-            value = row * cols + col
-            if value >= total:
-                value = total - 1  # prevent out-of-range index
-
-            self.__inner_idx = value
-            self.__buttons[value].selected(True)
+            self.__inner_idx = next_idx
+            self.__visible_offset = max(0, min(self.__visible_offset, max(0, total - 30)))
+            self.__buttons[next_idx].selected(True)
 
             if event.key == pygame.K_RETURN:
                 self.__prev = "shop"
@@ -284,6 +337,10 @@ class Scroll_Grid():
             
             self.__selected_node = self.__item_tree[new_key]
             self.__tree_idx = self.__selected_node.position
+
+            if event.key == pygame.K_RETURN:
+                if self.__prev == "shop":
+                    self.buy_item(self.__item_tree[self.__tree_idx].item.item)
 
 
 # --------------------------------------------------------------------------------
@@ -378,8 +435,10 @@ class Scroll_Grid():
         if i.cost > self.__pc.gold:
             print("not enough gold")
         else:
-            self.__pc.take_gold(i.cost)
-            self.__pc.add_item(i.name)
+            if self.__pc.add_item(i.name):
+                self.__pc.take_gold(i.cost)
+            else:
+                print("not enough inventory space")
 
     def sell_item(self, i):
         value = math.ceil(i.cost * .65)

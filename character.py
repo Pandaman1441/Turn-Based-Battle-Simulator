@@ -5,53 +5,21 @@ from item_loader import load_items
 
 # character template
 class Character:
-    def __init__(self):
-        self.__name = "Test"
+    def __init__(self, name: str, base_stats: dict, attack_mod: dict, gold: int = 0, actives: list[str] = None, passives: list[str] = None,  inventory: list[str] = None, icon: str = None):
+        self.__name = name
         self.__level = 1
         self.__ex = 0
-        self.__gold = 0
-        self.__base_stats = {
-            "hp":       {"max": 500, "current": 500},      
-            "pp":       {"max": 20, "current": 20},        
-            "mp":       {"max": 10, "current": 10},       
-            "ag":       {"max": 10, "current": 10},        
-            "wp":       {"max": 10, "current": 10},       
-            "pr":       {"max": 10, "current": 10},    
-            "mr":       {"max": 10, "current": 10},        
-            "resource": {"max": 300, "current": 300},        
-            "accuracy": {"max": 80, "current": 80},
-            "crit_chance": {"max": 1, "current": 1},
-            "crit_dmg": {"max": 1.5, "current": 1.5}
-        }
-        self.__stats = { 
-            "hp":       {"max": 500, "current": 500},        # health points
-            "pp":       {"max": 20, "current": 20},          # physical power
-            "mp":       {"max": 10, "current": 10},          # magical power
-            "ag":       {"max": 10, "current": 10},          # dodge chance, inititive 
-            "wp":       {"max": 10, "current": 10},          # willpower
-            "pr":       {"max": 10, "current": 10},          # physical resist
-            "mr":       {"max": 10, "current": 10},          # magical resist
-            "resource": {"max": 300, "current": 300},        # mana or other type of resource like rage
-            "accuracy": {"max": 80, "current": 80},
-            "crit_chance": {"max": 1, "current": 1},
-            "crit_dmg": {"max": 1.5, "current": 1.5}
-        }
-        self.__actives = ["basic attack"]
-        self.__passives = []
-        self.__inventory = []
-        self.__basic_attack_modifier = {
-            "hp":       0 ,  
-            "pp":       1,    
-            "mp":       0,    
-            "ag":       0.3,         
-            "wp":       0,  
-            "pr":       0,    
-            "mr":       0,    
-            "resource": 0  
-        }
+        self.__gold = gold
+        self.__base_stats = copy.deepcopy(base_stats)
+        self.__stats = copy.deepcopy(base_stats)
+        self.__actives = actives if actives else []
+        self.__passives = passives if passives else []
+        self.__inventory = inventory if inventory else []
+        self.__basic_attack_modifier = copy.deepcopy(attack_mod)
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
         self.__loaded_inventory = load_items(self.__inventory)
+        self.__icon = icon or "Assests/item_icons/placeholder.png"
 
  
     def __str__(self):
@@ -80,7 +48,7 @@ class Character:
     def stats(self):
         return copy.deepcopy(self.__stats)
 
-    def get_stat(self, stat):
+    def get_stat(self, stat):                       #.get_stat("stat")["current"]
         return self.__stats[stat].copy()
 
     def set_current_stat(self, stat, value):
@@ -124,8 +92,12 @@ class Character:
         return self.__loaded_passives.copy() 
     
     def add_item(self, item=str):
-        self.__inventory.append(item)
-        self.__loaded_inventory = load_items(self.__inventory)
+        if len(self.__inventory) < 10:
+            self.__inventory.append(item)
+            self.__loaded_inventory = load_items(self.__inventory)
+            return True
+        else:
+            return False
     
     def get_inventory(self):
         return self.__inventory.copy()
@@ -148,6 +120,9 @@ class Character:
             self.__gold -= value
             return True
 
+    @property
+    def icon(self):
+        return self.__icon
 # we can override a function to write it specifically for something or we can extend it using super().function()
 
 # store active and passives skills in a list. Each skill can be an object
@@ -158,12 +133,50 @@ class Character:
 # testing \/
 
 # from Skills import skill_registry
-# p1 = Character()
-# p2 = Character()
+# p1 = Character(name = "art",
+#         gold = 3500,
+#         base_stats = {
+#             "hp":       {"max": 500, "current": 500},
+#             "pp":       {"max": 20, "current": 20},
+#             "mp":       {"max": 10, "current": 10},
+#             "ag":       {"max": 10, "current": 10},
+#             "wp":       {"max": 10, "current": 10},
+#             "pr":       {"max": 10, "current": 10},
+#             "mr":       {"max": 10, "current": 10},
+#             "resource": {"max": 300, "current": 300},
+#             "accuracy": {"max": 80, "current": 80},
+#             "crit_chance": {"max": 0, "current": 0},
+#             "crit_dmg": {"max": 1.5, "current": 1.5}
+#         },
+#         actives = ["basic attack", "fireball"],
+#         passives = [],
+#         attack_mod = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0},
+#         inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"],
+#         icon = "Assests/class_icons/R.png")
+# p2 = Character(name = "art",
+#         gold = 3500,
+#         base_stats = {
+#             "hp":       {"max": 500, "current": 500},
+#             "pp":       {"max": 20, "current": 20},
+#             "mp":       {"max": 10, "current": 10},
+#             "ag":       {"max": 10, "current": 10},
+#             "wp":       {"max": 10, "current": 10},
+#             "pr":       {"max": 40, "current": 40},
+#             "mr":       {"max": 10, "current": 10},
+#             "resource": {"max": 300, "current": 300},
+#             "accuracy": {"max": 80, "current": 80},
+#             "crit_chance": {"max": 0, "current": 0},
+#             "crit_dmg": {"max": 1.5, "current": 1.5}
+#         },
+#         actives = ["basic attack"],
+#         passives = [],
+#         attack_mod = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0},
+#         inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"],
+#         icon = "Assests/class_icons/R.png")
 # skills = p1.get_actives()
 
 # l = p1.get_loaded_actives()
-# r = l[0]
+# r = l[1]
 # r.use(p1, p2)
 
 # hp = p2.get_stat("hp")

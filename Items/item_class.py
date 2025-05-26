@@ -1,35 +1,35 @@
+from abc import ABC
 
 
-
-class Item():
-    def __init__(self):
-        self.__name = "skill"
-        self.__stats = {}
-        self.__description = "test."
-        self.__cost = 1
-        self.__build = []
-        self.__icon = "Assests/item_icons/R.png"
+class Item(ABC):
+    def __init__(self, name="Item", stats=None, description="", cost=0, build=None, icon="Assets/item_icons/placeholder.png"):
+        self._name = name
+        self._stats = stats if stats else {}
+        self._description = description
+        self._cost = cost
+        self._build = build if build else []
+        self._icon = icon
 
     @property
     def stats(self):
-        return self.__stats
+        return self._stats
     
     @property
     def cost(self):
-        return self.__cost
+        return self._cost
     
     @property
     def name(self):
-        return self.__name
-    
+        return self._name
+
     @property
     def description(self):
-        return self.__description
+        return self._description
     
     @property
     def build(self):
-        return self.__build
-    
+        return self._build
+
     @property
     def icon(self):
-        return self.__icon
+        return self._icon

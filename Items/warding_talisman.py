@@ -5,36 +5,13 @@ from Items.item_class import Item
 
 class Warding_Talisman(Item):
     def __init__(self):
-        self.__name = "Warding Talisman"
-        self.__stats = {
+        super().__init__(name = "Warding Talisman",
+        stats = {
             "mp": 30,
-            "mr": 25
-        }
-        self.__description = "test."
-        self.__cost = 1
-        self.__build = []
-        self.__icon = "Assests/item_icons/tile033.png"
+            "mr": 25,
+        },
+        description = "test.",
+        cost = 1,
+        build = [],
+        icon = "Assests/item_icons/tile033.png")
 
-    @property
-    def stats(self):
-        return self.__stats
-    
-    @property
-    def cost(self):
-        return self.__cost
-    
-    @property
-    def name(self):
-        return self.__name
-    
-    @property
-    def description(self):
-        return self.__description
-    
-    @property
-    def build(self):
-        return self.__build
-    
-    @property
-    def icon(self):
-        return self.__icon

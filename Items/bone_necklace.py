@@ -5,35 +5,13 @@ from Items.item_class import Item
 
 class Bone_Necklace(Item):
     def __init__(self):
-        self.__name = "Bone Necklace"
-        self.__stats = {
-            "wp": 20
-        }
-        self.__description = "test."
-        self.__cost = 350  
-        self.__build = []
-        self.__icon = "Assests/item_icons/misc/tile001.png"
-
-    @property
-    def stats(self):
-        return self.__stats
-    
-    @property
-    def cost(self):
-        return self.__cost
-    
-    @property
-    def name(self):
-        return self.__name
-    
-    @property
-    def description(self):
-        return self.__description
-    
-    @property
-    def build(self):
-        return self.__build
-    
-    @property
-    def icon(self):
-        return self.__icon
+        super().__init__(
+            name = "Bone Necklace",
+            stats = {
+                "wp": 20
+            },
+            description = "test.",
+            cost = 350  ,
+            build = [],
+            icon = "Assests/item_icons/misc/tile001.png"
+    )

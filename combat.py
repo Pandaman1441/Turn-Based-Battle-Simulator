@@ -34,7 +34,7 @@ def physical_resistance(entity):
     return value
 
 def hit_chance(user, target):
-    a = user.accuracy
+    a = user.get_stat("accuracy")["current"]
     d = dodge_chance(target.get_stat("ag")["current"]) * 100
     d = math.ceil(d)
     hc = a - d
@@ -50,12 +50,14 @@ def hit_chance(user, target):
 
 def damage_target(dmg, target):
     stat = target.get_stat("hp")
+    dmg = math.ceil(dmg)
     target_hp = stat["current"] - dmg
     target_hp = max(target_hp, 0)
     target.set_current_stat("hp", target_hp)
 
 def heal_target(value, target):
     stat = target.get_stat("hp")
+    value = math.ceil(value)
     target_hp = stat["current"] + value
     target_hp = min(target_hp, stat["max"])
     target.set_current_stat("hp", target_hp)

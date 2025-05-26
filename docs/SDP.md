@@ -157,7 +157,9 @@ I'm working on how the skill objects are going to work and i'm caught in a kind 
   
 working on added some basic items and i've already hit some problems with the design. I've rewritten it to have base stats and then stats as two different attributes. the base stats are only changed when a character levels up. the stats are the base stats plus anything, items, buffs and such. 
 
-need to make sure items, and abilities can be removed and that no dupes are added for abilities. we can have multiple of the same basic or epic item. no dupes of legendaries
+need to make sure items, and abilities can be removed and that no dupes are added for abilities. we can have multiple of the same basic or epic item. no dupes of legendaries.
+
+I haven't written in this in a couple commits, and i usually only commit once a day. Anyways I've realized that I've been doing my abstract and concrete class wrong. Well just not really using inheritance. I was overriding the constructor and then just rewriting all the methods. So I'm really just writing this to take a break from refactoring all the concrete classes to be correct. But I can already see how useful this will be in the future. I must of just completely forgotten how class inheritance worked after I finished writing the abstract classes.
 
 ## 4. testing and debugging
 
