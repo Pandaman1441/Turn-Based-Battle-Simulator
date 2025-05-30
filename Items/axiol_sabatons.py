@@ -8,10 +8,10 @@ class Axiol_Sabatons(Item):
         super().__init__(
         name = "Axiol Sabatons",
         stats = {
-            "pr": 25,
-            "mr": 25
+            "pr": 30,
+            "mr": 30
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1100,
+        build = ["Buckler", "Anti-Magic Cloak"],
         icon = "Assests/item_icons/tile082.png")

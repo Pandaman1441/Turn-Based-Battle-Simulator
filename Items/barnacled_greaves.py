@@ -8,12 +8,12 @@ class Barnacled_Greaves(Item):
         super().__init__(
         name = "Barnacled Greaves",
         stats = {
-            "pr": 25,
-            "wp": 20
+            "pr": 20,
+            "wp": 30
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 950,
+        build = ["Buckler", "Bone Necklace"],
         icon = "Assests/item_icons/tile075.png")
 
   

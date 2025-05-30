@@ -9,11 +9,11 @@ class Arcatech_Codex(Item):
         name = "Arcatech Codex",
         stats = {
             "mp": 20,
-            "pr": 20
+            "pr": 25
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1150,
+        build = ["Mystic Tome", "Buckler"],
         icon = "Assests/item_icons/tile026.png"
 )
    

@@ -8,12 +8,12 @@ class Ancestor_Totem(Item):
         super().__init__(
             name = "Ancestor Totem",
             stats = {
-                "hp": 550,
-                "wp": 30,
+                "hp": 400,
+                "wp": 20,
             },
             description = "test.",
-            cost = 1,
-            build = [],
+            cost = 1150,
+            build = ["Heartstone", "Bone Necklace"],
             icon = "Assests/item_icons/misc/tile000.png"
         )
 

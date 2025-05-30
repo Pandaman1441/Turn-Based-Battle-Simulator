@@ -7,9 +7,10 @@ class Hidden_Blade(Item):
     def __init__(self):
        super().__init__(name = "Hidden Blade",
         stats = {
-            "ag": 40
+            "ag": 50
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1450,
+        build = ["Initiate's Dagger", "Flowing Cloak"],
         icon = "Assests/item_icons/tile084.png")
+ 

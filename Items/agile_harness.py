@@ -8,12 +8,12 @@ class Agile_Harness(Item):
         super().__init__(
             name = "Agile Harness",
             stats = {
-                "ag": 30,
-                "hp": 400
+                "hp": 300,
+                "ag": 20
             },
             description = "test.",
-            cost = 1,
-            build = [],
+            cost = 1000,
+            build = ["Heartstone", "Initiate's Dagger"],
             icon = "Assests/item_icons/tile077.png"
         )
     

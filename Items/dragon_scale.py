@@ -8,11 +8,11 @@ class Dragon_Scale(Item):
         super().__init__(name = "Dragon Scale",
         stats = {
             "pr": 25,
-            "hp": 650
+            "hp": 300
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1000,
+        build = ["Buckler", "Heartstone"],
         icon = "Assests/item_icons/tile067.png")
 
   

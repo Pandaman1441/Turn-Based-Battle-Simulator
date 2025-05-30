@@ -7,11 +7,11 @@ class Warding_Talisman(Item):
     def __init__(self):
         super().__init__(name = "Warding Talisman",
         stats = {
-            "mp": 30,
-            "mr": 25,
+            "mp": 25,
+            "mr": 35,
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1100,
+        build = ["Mystic Tome", "Anti-Magic Cloak"],
         icon = "Assests/item_icons/tile033.png")
 

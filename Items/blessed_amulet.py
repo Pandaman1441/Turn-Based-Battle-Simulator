@@ -8,10 +8,11 @@ class Blessed_Amulet(Item):
         super().__init__(
         name = "Blessed Amulet",
         stats = {
-            "wp": 40
+            "wp": 70
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1250,
+        build = ["Bone Necklace", "Familiar Sigil"],
         icon = "Assests/item_icons/tile041.png"
 )
+

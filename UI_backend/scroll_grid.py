@@ -25,7 +25,6 @@ class Scroll_Grid():
         self.__inv_buttons = []
         self.__inv_idx = 0
         self.__inventory = False
-        self.__item = False
         self.__shop = False
         self.__prev = "none"
         self.__item_tree = {}
@@ -91,14 +90,14 @@ class Scroll_Grid():
             screen.blit(shape,(28,28))
         
         elif self.__inventory:
-            shape = pygame.Surface((500,500), pygame.SRCALPHA)
+            shape = pygame.Surface((694,349), pygame.SRCALPHA)
             shape.fill((240,240,240, 20))
             screen.blit(shape,(720,410))
 
-        elif self.__item:
-            shape = pygame.Surface((500,500), pygame.SRCALPHA)
+        if self.__mode == "item":
+            shape = pygame.Surface((350,380), pygame.SRCALPHA)
             shape.fill((240,240,240, 20))
-            screen.blit(shape,(28,28))
+            screen.blit(shape,(720,28))
 
 
         pygame.draw.line(screen, (240,240,240), (720,26), (720, 760),3)         # center line
@@ -108,7 +107,7 @@ class Scroll_Grid():
         pc_gold = self.__font.render(str(self.__pc.gold), 1, (255,255,255))
         screen.blit(pc_gold, (750,730))
 
-
+        
         for b in visible_items:                                                # shop list buttons
             if self.__mode == "shop":
                 if self.__visible_offset <= self.__inner_idx < self.__visible_offset + 30:
@@ -116,6 +115,7 @@ class Scroll_Grid():
             else:
                 b.selected(False)
             b.draw(screen)  
+
 
         if self.__inv_buttons:
             for b in self.__inv_buttons:                                            # Inventory buttons
@@ -184,6 +184,7 @@ class Scroll_Grid():
                 self.__outer = False
                 self.__inner = False
                 self.__inner_idx = 0
+                self.__mode = "none"
                 for b in self.__buttons:
                     b.selected(False)
                 return "back"
@@ -191,6 +192,7 @@ class Scroll_Grid():
             elif self.__mode == "shop":
                 self.__mode = "none"
                 self.__inner_idx = 0
+                self.__visible_offset = 0
                 for b in self.__buttons:
                     b.selected(False)
 
@@ -273,7 +275,6 @@ class Scroll_Grid():
             if event.key == pygame.K_RETURN:
                 self.__prev = "shop"
                 self.__mode = "item"
-                # self.buy_item(self.buttons[self.__inner_idx].item)  
 
 # --------------------------------------------------------------------------------
         elif self.__mode == "inventory":

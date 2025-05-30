@@ -8,11 +8,11 @@ class Arcane_Barrier(Item):
         super().__init__(
             name = "Arcane Barrier",
             stats = {
-                "mr": 30,
-                "r": 600
+                "mr": 20,
+                "r": 400
             },
             description = "test.",
-            cost = 1,
-            build = [],
+            cost = 700,
+            build = ["Anti-Magic Cloak", "Mana Crystal"],
             icon = "Assests/item_icons/tile053.png"
             )

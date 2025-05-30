@@ -7,10 +7,10 @@ class Manaflow_Band(Item):
     def __init__(self):
         super().__init__(name = "Manaflow Band",
         stats = {
-            "mp": 35,
-            "r": 500
+            "mp": 30,
+            "r": 400
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 950,
+        build = ["Mystic Tome", "Mana Crystal"],
         icon = "Assests/item_icons/general/tile046.png")

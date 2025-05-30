@@ -10,6 +10,6 @@ class Sticker(Item):
             "crit_chance": 20
         },
         description = "test.",
-        cost = 1,
-        build = [],
-        icon = "Assests/item_icons/general/tile002.png")
+        cost = 800,
+        build = ["Razor Fang", "Razor Fang"],
+        icon = "Assests/item_icons/tile065.png") 

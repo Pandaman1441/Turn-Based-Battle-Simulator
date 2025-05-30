@@ -8,10 +8,10 @@ class Resolved(Item):
         super().__init__(name = "Resolved",
         stats = {
             "mr": 25,
-            "wp": 35,
+            "wp": 25,
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 900,
+        build = ["Anti-Magic Cloak", "Bone Necklace"],
         icon = "Assests/item_icons/tile081.png")
 

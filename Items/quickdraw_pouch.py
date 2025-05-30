@@ -7,10 +7,10 @@ class Quickdraw_Pouch(Item):
     def __init__(self):
         super().__init__(name = "Quickdraw Pouch",
         stats = {
-            "crit_chance": 15,
-            "ag": 20
+            "crit_chance": 10,
+            "ag": 25
             },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1200,
+        build = ["Razor Fang", "Initiate's Dagger"],
         icon = "Assests/item_icons/potions/tile000.png")

@@ -7,10 +7,10 @@ class Reinforced_Heater(Item):
     def __init__(self):
         super().__init__(name = "Reinforced Heater",
         stats = {
-            "pr": 40
+            "pr": 45
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1000,
+        build = ["Buckler", "Buckler"],
         icon = "Assests/item_icons/tile012.png")
 

@@ -5,7 +5,7 @@ from Items.item_class import Item
 
 class Mystic_Tome(Item):
     def __init__(self):
-        super().__init__(name = "Mystic_Tome",
+        super().__init__(name = "Mystic Tome",
         stats = {
             "mp": 25
         },

@@ -6,7 +6,7 @@ class Arcane_Overclocker(Item):
         super().__init__(
         name = "Arcane Overclocker",
         stats = {},
-        description = "Gotta ge the time back somehow",
+        description = "Gotta get the time back somehow",
         cost = 1,
         build = [],
         icon = "Assests/item_icons/placeholder.png")

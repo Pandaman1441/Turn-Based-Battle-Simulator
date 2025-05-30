@@ -12,5 +12,5 @@ class Hexed_Maul(Item):
         },
         description = "test.",
         cost = 950,
-        build = [],
+        build = ["Recruit's Sword", "Anti-Magic Cloak"],
         icon = "Assests/item_icons/tile030.png")

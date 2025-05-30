@@ -8,9 +8,9 @@ class Bastion(Item):
         super().__init__(
         name = "Bastion",
         stats = {
-            "hp": 800
+            "hp": 550
         },
         description = "test.",
-        cost = 1,
-        build = [],
+        cost = 1000,
+        build = ["Heartstone", "Heartstone"],
         icon = "Assests/item_icons/tile040.png")

@@ -7,11 +7,11 @@ class Marcher_Charm(Item):
     def __init__(self):
         super().__init__(name = "Marcher's Charm",
         stats = {
-            "r": 500,
-            "ag": 35
+            "ag": 20,
+            "wp": 25
         },
         description = "test.",
-        cost = 1,
-        build = [],
-        icon = "Assests/item_icons/general/tile009.png")
+        cost = 1100,
+        build = ["Initiate's Dagger", "Bone Necklace"],
+        icon = "Assests/item_icons/misc/tile002.png")
 

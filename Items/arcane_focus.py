@@ -11,7 +11,7 @@ class Arcane_Focus(Item):
                 "mp": 45
             },
             description = "test.",
-            cost = 810,
+            cost = 850,
             build = [],
             icon = "Assests/item_icons/misc/tile003.png"
 )
