@@ -2,7 +2,7 @@ import pygame
 import Items
 from UI_backend import item_icon
 import math
-from UI_backend import node
+from UI_backend import item_node
 
 
 class Scroll_Grid():
@@ -407,7 +407,7 @@ class Scroll_Grid():
         
         b = item_icon.div(i, (x,y))
         key = (pos, depth)
-        n = node.Node(key,b,parent)
+        n = item_node.Node(key,b,parent)
         if parent:
             parent.add_child(n)
         self.__item_tree[key] = n

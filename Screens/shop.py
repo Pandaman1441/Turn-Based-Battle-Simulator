@@ -1,6 +1,5 @@
 import pygame
 from UI_backend import button, scroll_grid
-import Items
 
 
 class Shop:
