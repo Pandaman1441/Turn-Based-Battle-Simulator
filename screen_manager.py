@@ -6,12 +6,12 @@ from Screens import shop
 
 class manager:
     def __init__(self, pc):
-        self.pc = pc
+        self.__party = [pc]
         self.screens = {
-                        "battle" : battle_ui.b_UI(pc),
-                        "menu" : main_menu.menu(pc),
-                        "shop" : shop.Shop(pc),
-                        "party" : party.Party(pc)
+                        "battle" : battle_ui.b_UI(),
+                        "menu" : main_menu.menu(self.__party),
+                        "shop" : shop.Shop(self.__party),
+                        "party" : party.Party(self.__party)
            }
         self.current = self.screens["menu"]
         self.__running = True
@@ -29,3 +29,8 @@ class manager:
 
     def get_status(self):
         return self.__running
+    
+    def add_character(self, pc):
+        if len(self.__party) < 5:
+            self.__party.append(pc)
+            print(self.__party)
