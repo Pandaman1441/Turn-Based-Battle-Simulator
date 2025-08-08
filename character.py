@@ -9,6 +9,7 @@ class Character:
         self.__name = name
         self.__level = 1
         self.__ex = 0
+        self.__inititive = 0
         self.__gold = gold
         self.__base_stats = copy.deepcopy(base_stats)
         self.__stats = copy.deepcopy(base_stats)

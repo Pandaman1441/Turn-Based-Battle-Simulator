@@ -63,3 +63,7 @@ def heal_target(value, target):
     target.set_current_stat("hp", target_hp)
 
 
+def roll_inititve(entity):
+    i = (entity.get_stat("ag") * 0.6) + random.randint(0,100)
+    entity.inititive = i
+    

@@ -4,12 +4,12 @@ import battle_manager
 
 
 class b_UI:
-    def __init__(self):
+    def __init__(self, party, enemies):
         self.__width = 200
         self.__height = 100
-        self.__party = []
+        self.__party = party
+        self.__manager = battle_manager.Battle_Manager(party, enemies)
         self.__font = pygame.font.Font(None, 36)      # 24 pixel height
-        self.__manager = None
 
         self.attack = button.Button("Attack",  (30,660), self.__width, self.__height)
         self.skill = button.Button("Skill", (240, 660), self.__width, self.__height)
@@ -24,10 +24,6 @@ class b_UI:
         self.__buttons[self.__selected_idx].selected(True)
         self.__turn = 0
     
-    def setup_sides(self, party, enemies):
-        self.__party = party
-        self.__enemies = enemies
-        self.__manager = battle_manager.Battle_Manager(self.__party,self.__enemies)
 
     def draw(self, screen):
         x = pygame.image.load("Assests/background.jpg")
