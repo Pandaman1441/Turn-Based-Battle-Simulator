@@ -21,6 +21,6 @@ class Goblin(Character):
         actives = ["basic attack"]
         passives = []
         basic_attack_modifier = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0}
-        inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
-        icon_path = "Assests/class_icons/tile000.png"
+        inventory = []
+        icon_path = "Assests/item_icons/misc/tile019.png"
         super().__init__(name, base_stats, basic_attack_modifier, gold, actives, passives, inventory, icon_path)

@@ -8,7 +8,7 @@ class manager:
     def __init__(self, pc):
         self.__party = [pc]
         self.screens = {
-                        "battle" : battle_ui.b_UI(self.__party,),
+                        "battle" : battle_ui.b_UI(self.__party),
                         "menu" : main_menu.menu(self.__party),
                         "shop" : shop.Shop(self.__party),
                         "party" : party.Party(self.__party)
