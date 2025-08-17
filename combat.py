@@ -12,9 +12,9 @@ import random
 
 
 def dodge_chance(ag):
-    n = 70
-    value = (ag * .75) / (ag+n)
-
+    n = 80
+    value = (ag * .70) / (ag+n)
+    print(f"dodge chance: {value}")
     return value
 
 def magic_resistance(entity):
@@ -22,7 +22,7 @@ def magic_resistance(entity):
     r = r["current"]
     n = 90
     value = (r * 1) / (r+n)
-    print(f"magical resistance: {value}")
+    # print(f"magical resistance: {value}")
     return value
 
 def physical_resistance(entity):
@@ -30,27 +30,34 @@ def physical_resistance(entity):
     r = r["current"]
     n = 90
     value = (r * 1) / (r+n)
-    print(f"physical resistance: {value}")
+    # print(f"physical resistance: {value}")
     return value
 
 def hit_chance(user, target):
     a = user.get_stat("accuracy")["current"]
     d = dodge_chance(target.get_stat("ag")["current"]) * 100
-    d = math.ceil(d)
+    d = math.floor(d)
     hc = a - d
+    print(f"accuracy: {a} dodge chance: {d}")
     hc = max(5, min(hc, 95))
     roll = random.randint(0,100)
     print(f"roll: {roll}, beat hit chance: {hc}")
     if roll <= hc:
-        print("hit landed. Calculating damage")
+        # print("hit landed. Calculating damage")
         return True
     else:
-        print("you missed")
+        # print("you missed")
         return False
 
-def damage_target(dmg, target):
+def damage_target(user, dmg, target):
     stat = target.get_stat("hp")
     dmg = math.ceil(dmg)
+    # crit calc
+    roll = random.randint(1,100)
+    if roll <= user.get_stat("crit_chance")["current"]:
+        print("critical hit!")
+        dmg = (user.get_stat("crit_dmg")["current"]) * dmg
+
     target_hp = stat["current"] - dmg
     target_hp = max(target_hp, 0)
     target.set_current_stat("hp", target_hp)

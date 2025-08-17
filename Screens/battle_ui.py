@@ -3,6 +3,8 @@ import pygame
 import battle_manager
 import generate_enemies
 
+import combat
+
 
 class b_UI:
     def __init__(self, party):
@@ -12,6 +14,7 @@ class b_UI:
         # self.__manager = battle_manager.Battle_Manager(party, enemies)
         self.__enemies = generate_enemies.Goblin()
         self.__font = pygame.font.Font(None, 36)      # 24 pixel height
+        self.__log_font = pygame.font.Font(None, 24)
 
         self.attack = button.Button("Attack",  (30,660), self.__width, self.__height)
         self.skill = button.Button("Skill", (240, 660), self.__width, self.__height)
@@ -25,6 +28,7 @@ class b_UI:
         self.__selected_idx = 0
         self.__buttons[self.__selected_idx].selected(True)
         self.__turn = 0
+        self.__log = ""
     
 
     def draw(self, screen):
@@ -40,6 +44,8 @@ class b_UI:
         self.end_turn.draw(screen)
 
         ########################### party borders and info
+
+        # (x,y) (width, hight)
 
         party_border = pygame.Rect((20, 650), (1400, 230))
         pygame.draw.rect(screen, (240,240,240), party_border, 2)
@@ -87,6 +93,9 @@ class b_UI:
         pygame.draw.rect(screen, (40,40,40), e_hp_bar, 2)
         ########################
 
+        log = self.__log_font.render(self.__log, 1, (255,255,255))
+        screen.blit(log, (660, 700))
+
 
     def handle_event(self, event):
         ps = self.__selected_idx
@@ -101,7 +110,14 @@ class b_UI:
         elif event.key == pygame.K_UP:
             row = (row - 1) % 2
         elif event.key == pygame.K_RETURN:
-            return "menu"
+            if self.attack.get_selected():
+                l = self.__party[0].get_loaded_actives()
+                s = l[0]
+                self.__log = s.use(self.__party[0], self.__enemies)
+                
+            
+            else:
+                return "menu"
         self.__buttons[ps].selected(False)
         
         value = (row * 3) + col
