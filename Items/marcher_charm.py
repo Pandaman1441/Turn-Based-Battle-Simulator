@@ -13,5 +13,5 @@ class Marcher_Charm(Item):
         description = "test.",
         cost = 1100,
         build = ["Initiate's Dagger", "Bone Necklace"],
-        icon = "Assests/item_icons/misc/tile002.png")
+        icon = "Assets/item_icons/misc/tile002.png")
 

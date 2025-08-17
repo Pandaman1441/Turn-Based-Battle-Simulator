@@ -8,5 +8,5 @@ class Qin_Glaive(Item):
         description = "Even the wind moves out of the blade's path.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

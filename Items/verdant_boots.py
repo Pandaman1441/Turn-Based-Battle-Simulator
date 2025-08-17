@@ -13,5 +13,5 @@ class Verdant_Boots(Item):
         description = "test.",
         cost = 950,
         build = ["Mana Crystal", "Initiate's Dagger"],
-        icon = "Assests/item_icons/misc/tile005.png"
+        icon = "Assets/item_icons/misc/tile005.png"
 )

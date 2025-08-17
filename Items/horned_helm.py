@@ -13,4 +13,4 @@ class Horned_Helm(Item):
         description = "test.",
         cost = 850,
         build = ["Buckler", "Recruit's Sword"],
-        icon = "Assests/item_icons/tile054.png")
+        icon = "Assets/item_icons/tile054.png")

@@ -8,4 +8,4 @@ class Heart_Warlord(Item):
         description = "Still beating and raging.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

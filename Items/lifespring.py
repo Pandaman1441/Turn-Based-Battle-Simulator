@@ -12,4 +12,4 @@ class Lifespring(Item):
         description = "test.",
         cost = 450,
         build = ["Mana Crystal", "Mana Crystal"],
-        icon = "Assests/item_icons/misc/tile007.png")
+        icon = "Assets/item_icons/misc/tile007.png")

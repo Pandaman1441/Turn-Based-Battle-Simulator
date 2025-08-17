@@ -12,5 +12,5 @@ class Hidden_Blade(Item):
         description = "test.",
         cost = 1450,
         build = ["Initiate's Dagger", "Flowing Cloak"],
-        icon = "Assests/item_icons/tile084.png")
+        icon = "Assets/item_icons/tile084.png")
  

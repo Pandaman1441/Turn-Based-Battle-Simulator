@@ -8,6 +8,6 @@ class Duelist_Regalia(Item):
         description = "For those who can sign their name in steel.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 
     

@@ -12,4 +12,4 @@ class Sticker(Item):
         description = "test.",
         cost = 800,
         build = ["Razor Fang", "Razor Fang"],
-        icon = "Assests/item_icons/tile065.png") 
+        icon = "Assets/item_icons/tile065.png") 

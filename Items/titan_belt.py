@@ -13,5 +13,5 @@ class Titan_Belt(Item):
         description = "test.",
         cost = 1200,
         build = ["Recruit's Sword", "Heartstone"],
-        icon = "Assests/item_icons/general/tile009.png")
+        icon = "Assets/item_icons/general/tile009.png")
 

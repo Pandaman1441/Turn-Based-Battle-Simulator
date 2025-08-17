@@ -13,5 +13,5 @@ class Bone_Necklace(Item):
             description = "test.",
             cost = 350  ,
             build = [],
-            icon = "Assests/item_icons/misc/tile001.png"
+            icon = "Assets/item_icons/misc/tile001.png"
     )

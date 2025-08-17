@@ -14,6 +14,6 @@ class Barnacled_Greaves(Item):
         description = "test.",
         cost = 950,
         build = ["Buckler", "Bone Necklace"],
-        icon = "Assests/item_icons/tile075.png")
+        icon = "Assets/item_icons/tile075.png")
 
   

@@ -12,4 +12,4 @@ class Mana_Crystal(Item):
         description = "test.",
         cost = 300,
         build = [],
-        icon = "Assests/item_icons/potions/tile017.png")
+        icon = "Assets/item_icons/potions/tile017.png")

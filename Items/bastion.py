@@ -13,4 +13,4 @@ class Bastion(Item):
         description = "test.",
         cost = 1000,
         build = ["Heartstone", "Heartstone"],
-        icon = "Assests/item_icons/tile040.png")
+        icon = "Assets/item_icons/tile040.png")

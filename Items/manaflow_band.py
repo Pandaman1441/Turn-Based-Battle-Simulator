@@ -13,4 +13,4 @@ class Manaflow_Band(Item):
         description = "test.",
         cost = 950,
         build = ["Mystic Tome", "Mana Crystal"],
-        icon = "Assests/item_icons/general/tile046.png")
+        icon = "Assets/item_icons/general/tile046.png")

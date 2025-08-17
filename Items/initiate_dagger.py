@@ -12,5 +12,5 @@ class Initiate_Dagger(Item):
         description = "test.",
         cost = 500,
         build = [],
-        icon = "Assests/item_icons/tile028.png")
+        icon = "Assets/item_icons/tile028.png")
 

@@ -9,5 +9,5 @@ class Acclamation_Soul(Item):
             description = "The act of applause is an...",
             cost = 1,
             build = [],
-            icon = "Assests/item_icons/placeholder.png"
+            icon = "Assets/item_icons/placeholder.png"
         )

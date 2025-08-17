@@ -10,5 +10,5 @@ class Thunder(Item):
         description = "Makes one hell of a sound.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png"
+        icon = "Assets/item_icons/placeholder.png"
 )

@@ -24,6 +24,6 @@ class Scholar(Character):
         passives = []
         basic_attack_modifier = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0}
         inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
-        icon_path = "Assests/class_icons/book_open.png"
+        icon_path = "Assets/class_icons/book_open.png"
         super().__init__(name, base_stats, basic_attack_modifier, gold, actives, passives, inventory, icon_path)
 

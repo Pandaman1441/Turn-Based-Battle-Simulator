@@ -14,5 +14,5 @@ class Arcane_Barrier(Item):
             description = "test.",
             cost = 700,
             build = ["Anti-Magic Cloak", "Mana Crystal"],
-            icon = "Assests/item_icons/tile053.png"
+            icon = "Assets/item_icons/tile053.png"
             )

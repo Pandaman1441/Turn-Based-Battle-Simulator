@@ -12,5 +12,5 @@ class Veteran_Greatsword(Item):
         description = "test.",
         cost = 1350,
         build = ["Recruit's Sword", "Savage Axe"],
-        icon = "Assests/item_icons/tile021.png")
+        icon = "Assets/item_icons/tile021.png")
 

@@ -9,5 +9,5 @@ class Bladed_Signet(Item):
         description = "A ring for an heir.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

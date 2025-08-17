@@ -8,4 +8,4 @@ class Mercenary_IOU(Item):
         description = "Payable upon survival.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

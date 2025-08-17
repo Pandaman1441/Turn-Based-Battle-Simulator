@@ -13,4 +13,4 @@ class Fallen_Star(Item):
         description = "test.",
         cost = 850,
         build = ["Mana Crystal", "Bone Necklace"],
-        icon = "Assests/item_icons/potions/tile019.png")
+        icon = "Assets/item_icons/potions/tile019.png")

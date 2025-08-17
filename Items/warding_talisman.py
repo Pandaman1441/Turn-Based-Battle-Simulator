@@ -13,5 +13,5 @@ class Warding_Talisman(Item):
         description = "test.",
         cost = 1100,
         build = ["Mystic Tome", "Anti-Magic Cloak"],
-        icon = "Assests/item_icons/tile033.png")
+        icon = "Assets/item_icons/tile033.png")
 

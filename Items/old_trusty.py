@@ -10,6 +10,6 @@ class Old_Trusty(Item):
         description = "Never fails to get me out of anything.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png"
+        icon = "Assets/item_icons/placeholder.png"
 )
 

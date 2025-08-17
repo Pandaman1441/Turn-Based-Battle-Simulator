@@ -13,6 +13,6 @@ class Dirk(Item):
         description = "test.",
         cost = 1100,
         build = ["Recruit's Sword", "Initiate's Dagger"],
-        icon = "Assests/item_icons/tile000.png") 
+        icon = "Assets/item_icons/tile000.png") 
 
    

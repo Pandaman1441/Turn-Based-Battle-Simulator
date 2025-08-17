@@ -12,5 +12,5 @@ class Recruit_Sword(Item):
         description = "test.",
         cost = 300,
         build = [],
-        icon = "Assests/item_icons/tile014.png"
+        icon = "Assets/item_icons/tile014.png"
 )

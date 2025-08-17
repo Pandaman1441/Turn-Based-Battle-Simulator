@@ -8,5 +8,5 @@ class Pinnacle(Item):
         description = "This is my peak, this is...",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png"
+        icon = "Assets/item_icons/placeholder.png"
 )

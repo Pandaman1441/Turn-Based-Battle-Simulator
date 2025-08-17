@@ -13,4 +13,4 @@ class Ironwood_Armor(Item):
         description = "test.",
         cost = 800,
         build = ["Buckler", "Mana Crystal"],
-        icon = "Assests/item_icons/tile004.png")
+        icon = "Assets/item_icons/tile004.png")

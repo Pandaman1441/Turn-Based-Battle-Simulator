@@ -14,6 +14,6 @@ class Agile_Harness(Item):
             description = "test.",
             cost = 1000,
             build = ["Heartstone", "Initiate's Dagger"],
-            icon = "Assests/item_icons/tile077.png"
+            icon = "Assets/item_icons/tile077.png"
         )
     

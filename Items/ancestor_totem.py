@@ -14,6 +14,6 @@ class Ancestor_Totem(Item):
             description = "test.",
             cost = 1150,
             build = ["Heartstone", "Bone Necklace"],
-            icon = "Assests/item_icons/misc/tile000.png"
+            icon = "Assets/item_icons/misc/tile000.png"
         )
 

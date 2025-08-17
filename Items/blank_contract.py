@@ -9,6 +9,6 @@ class Blank_Contract(Item):
         description = "The paper is blank until the knife drips.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 
    

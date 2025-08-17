@@ -13,6 +13,6 @@ class Arcane_Focus(Item):
             description = "test.",
             cost = 850,
             build = [],
-            icon = "Assests/item_icons/misc/tile003.png"
+            icon = "Assets/item_icons/misc/tile003.png"
 )
    

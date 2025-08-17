@@ -20,7 +20,7 @@ class Character:
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
         self.__loaded_inventory = load_items(self.__inventory)
-        self.__icon = icon or "Assests/item_icons/placeholder.png"
+        self.__icon = icon or "Assets/item_icons/placeholder.png"
 
  
     def __str__(self):

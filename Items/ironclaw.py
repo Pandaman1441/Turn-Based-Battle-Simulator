@@ -13,5 +13,5 @@ class Ironclaw(Item):
         description = "A people never forgotten",
         cost = 3200,
         build = ["Titan's Belt", "Savage Axe", "Heartstone"],
-        icon = "Assests/item_icons/tile069.png")
+        icon = "Assets/item_icons/tile069.png")
 

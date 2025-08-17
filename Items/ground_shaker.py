@@ -11,4 +11,4 @@ class Ground_Shaker(Item):
         description = "And so the ground trembles.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

@@ -8,5 +8,5 @@ class Nightshade_Veil(Item):
         description = "A veil to protect from what.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

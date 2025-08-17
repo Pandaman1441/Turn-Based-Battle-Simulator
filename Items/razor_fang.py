@@ -12,5 +12,5 @@ class Razor_Fang(Item):
         description = "test.",
         cost = 250,
         build = [],
-        icon = "Assests/item_icons/general/tile002.png"
+        icon = "Assets/item_icons/general/tile002.png"
 )

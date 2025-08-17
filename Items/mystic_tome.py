@@ -12,5 +12,5 @@ class Mystic_Tome(Item):
         description = "test.",
         cost = 450,
         build = [],
-        icon = "Assests/item_icons/tile019.png")
+        icon = "Assets/item_icons/tile019.png")
 

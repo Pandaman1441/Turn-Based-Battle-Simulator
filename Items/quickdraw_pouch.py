@@ -13,4 +13,4 @@ class Quickdraw_Pouch(Item):
         description = "test.",
         cost = 1200,
         build = ["Razor Fang", "Initiate's Dagger"],
-        icon = "Assests/item_icons/potions/tile000.png")
+        icon = "Assets/item_icons/potions/tile000.png")

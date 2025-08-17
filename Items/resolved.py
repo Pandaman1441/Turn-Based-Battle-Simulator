@@ -13,5 +13,5 @@ class Resolved(Item):
         description = "test.",
         cost = 900,
         build = ["Anti-Magic Cloak", "Bone Necklace"],
-        icon = "Assests/item_icons/tile081.png")
+        icon = "Assets/item_icons/tile081.png")
 

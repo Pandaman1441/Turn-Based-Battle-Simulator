@@ -8,5 +8,5 @@ class Valormir_Reliquary(Item):
         description = "Hums with the power of a god.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

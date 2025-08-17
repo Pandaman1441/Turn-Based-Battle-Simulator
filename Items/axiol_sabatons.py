@@ -14,4 +14,4 @@ class Axiol_Sabatons(Item):
         description = "test.",
         cost = 1100,
         build = ["Buckler", "Anti-Magic Cloak"],
-        icon = "Assests/item_icons/tile082.png")
+        icon = "Assets/item_icons/tile082.png")

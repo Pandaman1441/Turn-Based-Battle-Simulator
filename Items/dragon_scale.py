@@ -13,6 +13,6 @@ class Dragon_Scale(Item):
         description = "test.",
         cost = 1000,
         build = ["Buckler", "Heartstone"],
-        icon = "Assests/item_icons/tile067.png")
+        icon = "Assets/item_icons/tile067.png")
 
   

@@ -13,5 +13,5 @@ class Anti_Magic_Cloak(Item):
             description = "test.",
             cost = 350,
             build = [],
-            icon = "Assests/item_icons/tile074.png"
+            icon = "Assets/item_icons/tile074.png"
         )

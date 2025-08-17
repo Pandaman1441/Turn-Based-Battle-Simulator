@@ -14,6 +14,6 @@ class Arcatech_Codex(Item):
         description = "test.",
         cost = 1150,
         build = ["Mystic Tome", "Buckler"],
-        icon = "Assests/item_icons/tile026.png"
+        icon = "Assets/item_icons/tile026.png"
 )
    

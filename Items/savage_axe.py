@@ -10,5 +10,5 @@ class Savage_Axe(Item):
         description = "test.",
         cost = 750,
         build = [],
-        icon = "Assests/item_icons/tile016.png"
+        icon = "Assets/item_icons/tile016.png"
 )

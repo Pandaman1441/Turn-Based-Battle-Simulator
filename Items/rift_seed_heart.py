@@ -8,4 +8,4 @@ class Rift_Seed_Heart(Item):
         description = "Wild magic and nature crystalized.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

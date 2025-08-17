@@ -12,5 +12,5 @@ class Reinforced_Heater(Item):
         description = "test.",
         cost = 1000,
         build = ["Buckler", "Buckler"],
-        icon = "Assests/item_icons/tile012.png")
+        icon = "Assets/item_icons/tile012.png")
 

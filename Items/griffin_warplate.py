@@ -8,4 +8,4 @@ class Griffin_Warplate(Item):
         description = "Pristine and ready to take flight.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

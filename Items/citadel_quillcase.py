@@ -9,6 +9,6 @@ class Citadel_Quillcase(Item):
         description = "Well why shouldn't I have one.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 
     

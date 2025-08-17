@@ -8,5 +8,5 @@ class Tanaka_Stopper(Item):
         description = "Maybe it can solve every problem.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

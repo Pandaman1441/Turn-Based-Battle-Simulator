@@ -11,4 +11,4 @@ class Heartstone(Item):
         description = "test.",
         cost = 400,
         build = [],
-        icon = "Assests/item_icons/potions/tile008.png")
+        icon = "Assets/item_icons/potions/tile008.png")

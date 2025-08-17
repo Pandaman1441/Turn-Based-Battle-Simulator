@@ -8,4 +8,4 @@ class Tempest_Fuse(Item):
         description = "Durgan's answer to unfavorable winds: blow them away.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

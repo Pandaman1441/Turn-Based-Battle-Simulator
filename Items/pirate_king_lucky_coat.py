@@ -8,5 +8,5 @@ class Pirate_King_Lucky_Coat(Item):
         description = "I can't sail without my lucky coat.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png"
+        icon = "Assets/item_icons/placeholder.png"
 )

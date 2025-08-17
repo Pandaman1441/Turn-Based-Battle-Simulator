@@ -13,6 +13,6 @@ class Guardian_Heart(Item):
         description = "test.",
         cost = 1200,
         build = ["Anti-Magic Cloak", "Heartstone"],
-        icon = "Assests/item_icons/tile005.png")
+        icon = "Assets/item_icons/tile005.png")
 
   

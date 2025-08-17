@@ -13,6 +13,6 @@ class Blessed_Amulet(Item):
         description = "test.",
         cost = 1250,
         build = ["Bone Necklace", "Familiar Sigil"],
-        icon = "Assests/item_icons/tile041.png"
+        icon = "Assets/item_icons/tile041.png"
 )
 

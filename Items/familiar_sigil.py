@@ -12,4 +12,4 @@ class Familiar_Sigil(Item):
         description = "test.",
         cost = 700,
         build = [],
-        icon = "Assests/item_icons/tile081.png")
+        icon = "Assets/item_icons/tile081.png")

@@ -12,4 +12,4 @@ class Rift_Shard(Item):
         description = "test.",
         cost = 1400,
         build = ["Mystic Tome", "Arcane Focus"],
-        icon = "Assests/item_icons/general/tile011.png")
+        icon = "Assets/item_icons/general/tile011.png")

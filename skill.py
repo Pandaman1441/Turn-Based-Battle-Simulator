@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 
 class Skill(ABC):
     def __init__(self, name, base_damage, description, cost):
-        self._name = name
-        self._base_damage = base_damage
+        self.__name = name
+        self.__base_damage = base_damage
         self.__description = description
-        self._cost = cost
+        self.__cost = cost
 
     def get_info(self):
         desc = f"{self.__name}: {self.__description} \nCost: {self.__cost}"

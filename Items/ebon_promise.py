@@ -8,4 +8,4 @@ class Ebon_Promise(Item):
         description = "Somethings never die.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")

@@ -12,6 +12,6 @@ class Buckler(Item):
         description = "test.",
         cost = 300,
         build = [],
-        icon = "Assests/item_icons/tile011.png")
+        icon = "Assets/item_icons/tile011.png")
 
    

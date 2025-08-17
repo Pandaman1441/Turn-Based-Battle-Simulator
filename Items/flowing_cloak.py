@@ -12,6 +12,6 @@ class Flowing_Cloak(Item):
         description = "test.",
         cost = 1000,
         build = [],
-        icon = "Assests/item_icons/general/tile024.png")
+        icon = "Assets/item_icons/general/tile024.png")
 
   

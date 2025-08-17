@@ -8,5 +8,5 @@ class Ink_Stained_Gloves(Item):
         description = "So much history, too little time to write.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 

@@ -13,4 +13,4 @@ class Sapphire_Pendant(Item):
         description = "test.",
         cost = 1400,
         build = ["Mystic Tome", "Familiar Sigil"],
-        icon = "Assests/item_icons/general/tile046.png")
+        icon = "Assets/item_icons/general/tile046.png")

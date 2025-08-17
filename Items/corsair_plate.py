@@ -8,6 +8,6 @@ class Corsair_Plate(Item):
         description = "All swagger, no shame.",
         cost = 1,
         build = [],
-        icon = "Assests/item_icons/placeholder.png")
+        icon = "Assets/item_icons/placeholder.png")
 
    

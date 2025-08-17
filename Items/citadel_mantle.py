@@ -12,6 +12,6 @@ class Citadel_Mantle(Item):
         description = "test.",
         cost = 850,
         build = ["Anti-Magic Cloak","Anti-Magic Cloak"],
-        icon = "Assests/item_icons/general/tile023.png")
+        icon = "Assets/item_icons/general/tile023.png")
 
    
