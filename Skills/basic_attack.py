@@ -19,8 +19,8 @@ class Basic_Attack(Skill):
             resistance = combat.physical_resistance(target)
             dmg = dmg - (dmg * resistance)
             # print(dmg)
-            combat.damage_target(user, dmg, target)
-            return(f"{self._name} has been used, {target.name} takes {dmg} damage.")
+            result = combat.damage_target(user, dmg, target)
+            return(f"{self._name} has been used, {target.name} takes {result} damage.")
 
         else:
             return("you missed or they dodged")

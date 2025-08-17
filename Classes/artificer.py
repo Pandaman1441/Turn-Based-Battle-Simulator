@@ -17,7 +17,7 @@ class Artificer(Character):
             "mr":       {"max": 10, "current": 10},
             "resource": {"max": 300, "current": 300},
             "accuracy": {"max": 80, "current": 80},
-            "crit_chance": {"max": 0, "current": 0},
+            "crit_chance": {"max": 0, "current": 50},
             "crit_dmg": {"max": 1.5, "current": 1.5}
         }
         actives = ["basic attack"]

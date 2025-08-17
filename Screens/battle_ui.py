@@ -32,7 +32,7 @@ class b_UI:
     
 
     def draw(self, screen):
-        x = pygame.image.load("Assests/background.jpg")
+        x = pygame.image.load("Assets/background.jpg")
         bg = pygame.Surface.convert(x)
         screen.blit(bg,(0,0))
 

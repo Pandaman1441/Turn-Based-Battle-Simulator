@@ -14,7 +14,7 @@ import random
 def dodge_chance(ag):
     n = 80
     value = (ag * .70) / (ag+n)
-    print(f"dodge chance: {value}")
+    # print(f"dodge chance: {value}")
     return value
 
 def magic_resistance(entity):
@@ -50,17 +50,19 @@ def hit_chance(user, target):
         return False
 
 def damage_target(user, dmg, target):
-    stat = target.get_stat("hp")
     dmg = math.ceil(dmg)
     # crit calc
     roll = random.randint(1,100)
+    print(f"crit roll: {roll}")
     if roll <= user.get_stat("crit_chance")["current"]:
         print("critical hit!")
         dmg = (user.get_stat("crit_dmg")["current"]) * dmg
 
-    target_hp = stat["current"] - dmg
+    print(f"target takes {dmg} points of damage")
+    target_hp = target.get_stat("hp")["current"] - dmg
     target_hp = max(target_hp, 0)
     target.set_current_stat("hp", target_hp)
+    return(dmg)
 
 def heal_target(value, target):
     stat = target.get_stat("hp")
