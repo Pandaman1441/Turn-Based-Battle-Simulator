@@ -20,6 +20,7 @@ class Character:
         self.__loaded_actives = load_skills(self.__actives)
         self.__loaded_passives = load_skills(self.__passives)
         self.__loaded_inventory = load_items(self.__inventory)
+        self.__basic_attack = load_skills(["basic attack"])
         self.__icon = icon or "Assets/item_icons/placeholder.png"
 
  
@@ -29,6 +30,9 @@ class Character:
     def intro(self):
         pass
 
+    def basic_attack(self, target):
+        result = self.__basic_attack[0].use(self, target)
+        return result
 
     def get_basic_attack_modifier(self):
         value = sum(self.__stats[stat]["current"] * mod for stat, mod in self.__basic_attack_modifier.items())

@@ -8,23 +8,24 @@ class Artificer(Character):
         name = "art"
         gold = 3500
         base_stats = {
-            "hp":       {"max": 500, "current": 500},
-            "pp":       {"max": 20, "current": 20},
-            "mp":       {"max": 10, "current": 10},
-            "ag":       {"max": 10, "current": 10},
-            "wp":       {"max": 10, "current": 10},
-            "pr":       {"max": 10, "current": 10},
+            "hp":       {"max": 360, "current": 360},
+            "pp":       {"max": 15, "current": 15},
+            "mp":       {"max": 18, "current": 18},
+            "ag":       {"max": 5, "current": 5},
+            "wp":       {"max": 8, "current": 8},
+            "pr":       {"max": 8, "current": 8},
             "mr":       {"max": 10, "current": 10},
-            "resource": {"max": 300, "current": 300},
+            "resource": {"max": 150, "current": 150},
             "accuracy": {"max": 80, "current": 80},
-            "crit_chance": {"max": 0, "current": 50},
-            "crit_dmg": {"max": 1.5, "current": 1.5}
+            "crit_chance": {"max": 0, "current": 0},
+            "crit_dmg": {"max": 1.6, "current": 1.6}
         }
-        actives = ["basic attack"]
+        actives = []
         passives = []
-        basic_attack_modifier = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0}
-        inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
+        basic_attack_modifier = {"hp": 0, "pp": .8, "mp": .2, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": .17}
+        inventory = []
         icon_path = "Assets/class_icons/R.png"
         super().__init__(name, base_stats, basic_attack_modifier, gold, actives, passives, inventory, icon_path)
 
+# 42 base dmg
 

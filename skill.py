@@ -15,6 +15,11 @@ class Skill(ABC):
     @abstractmethod
     def use(self, user, target):
         pass
+
+    #@abstractmethod
+    def targetting(self, user):
+        pass
+    # should call use instead 
  
 
     # skills are loaded by string in the character object, we don't keep a reference of the skill objects 

@@ -15,7 +15,9 @@ class b_UI:
         self.__enemies = generate_enemies.Goblin()
         self.__font = pygame.font.Font(None, 36)      # 24 pixel height
         self.__log_font = pygame.font.Font(None, 24)
-
+        # need an object that can track a battle instance, has enemies, party, tracks turns.
+        # this class communicates with the 'battle_tracker' 
+        # 'battle_tracker' does all the bts stuff while this class takes the results and displays them
         self.attack = button.Button("Attack",  (30,660), self.__width, self.__height)
         self.skill = button.Button("Skill", (240, 660), self.__width, self.__height)
         self.inventory = button.Button("Inventory", (450, 660), self.__width, self.__height)
@@ -111,9 +113,8 @@ class b_UI:
             row = (row - 1) % 2
         elif event.key == pygame.K_RETURN:
             if self.attack.get_selected():
-                l = self.__party[0].get_loaded_actives()
-                s = l[0]
-                self.__log = s.use(self.__party[0], self.__enemies)
+                
+                self.__log = self.__party[0].basic_attack( self.__enemies)
                 
             
             else:

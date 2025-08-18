@@ -8,22 +8,22 @@ class Sorceress(Character):
         name = "sorc"
         gold = 3500
         base_stats = {
-            "hp":       {"max": 500, "current": 500},
-            "pp":       {"max": 20, "current": 20},
+            "hp":       {"max": 360, "current": 360},
+            "pp":       {"max": 8, "current": 8},
             "mp":       {"max": 10, "current": 10},
-            "ag":       {"max": 10, "current": 10},
-            "wp":       {"max": 10, "current": 10},
-            "pr":       {"max": 10, "current": 10},
-            "mr":       {"max": 10, "current": 10},
-            "resource": {"max": 300, "current": 300},
+            "ag":       {"max": 8, "current": 8},
+            "wp":       {"max": 25, "current": 25},
+            "pr":       {"max": 7, "current": 7},
+            "mr":       {"max": 7, "current": 7},
+            "resource": {"max": 150, "current": 150},
             "accuracy": {"max": 80, "current": 80},
             "crit_chance": {"max": 0, "current": 0},
             "crit_dmg": {"max": 1.5, "current": 1.5}
         }
-        actives = ["basic attack"]
+        actives = []
         passives = []
-        basic_attack_modifier = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0}
-        inventory = ["Buckler", "Razor Fang", "Ironclaw", "Heartstone"]
+        basic_attack_modifier = {"hp": 0, "pp": .8, "mp": 0, "ag": 0, "wp": 1.2, "pr": 0, "mr": 0, "resource": 0.08}
+        inventory = []
         icon_path = "Assets/class_icons/tile063.png"
         super().__init__(name, base_stats, basic_attack_modifier, gold, actives, passives, inventory, icon_path)
 

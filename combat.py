@@ -56,7 +56,7 @@ def damage_target(user, dmg, target):
     print(f"crit roll: {roll}")
     if roll <= user.get_stat("crit_chance")["current"]:
         print("critical hit!")
-        dmg = (user.get_stat("crit_dmg")["current"]) * dmg
+        dmg = math.ceil((user.get_stat("crit_dmg")["current"]) * dmg)
 
     print(f"target takes {dmg} points of damage")
     target_hp = target.get_stat("hp")["current"] - dmg
