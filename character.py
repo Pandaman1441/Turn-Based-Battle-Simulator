@@ -30,6 +30,12 @@ class Character:
     def intro(self):
         pass
 
+    def is_alive(self):
+        if self.__stats['hp']["current"] > 0:
+            return True
+        else:
+            return False
+
     def basic_attack(self, target):
         result = self.__basic_attack[0].use(self, target)
         return result

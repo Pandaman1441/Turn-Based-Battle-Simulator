@@ -72,7 +72,7 @@ def heal_target(value, target):
     target.set_current_stat("hp", target_hp)
 
 
-def roll_inititve(entity):
+def roll_inititive(entity):
     i = math.ceil((entity.get_stat("ag")["current"] * 0.25)) + 75
     r = random.randint(0,i)
     print(f"{entity.name} : {r}")
