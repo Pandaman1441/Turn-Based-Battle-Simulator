@@ -128,6 +128,13 @@ class Character:
     @property
     def icon(self):
         return self.__icon
+    
+    @property
+    def inititive(self):
+        return self.__inititive
+    
+    def set_inititive(self, value):
+        self.__inititive = value
 # we can override a function to write it specifically for something or we can extend it using super().function()
 
 # store active and passives skills in a list. Each skill can be an object

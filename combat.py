@@ -2,7 +2,7 @@
 import math
 import random
 
-
+ 
 # This is where we can do damage calculations, apply crits, 
 
 # Resistances have dimishing returns for how much they reduce damage by
@@ -73,6 +73,8 @@ def heal_target(value, target):
 
 
 def roll_inititve(entity):
-    i = (entity.get_stat("ag") * 0.6) + random.randint(0,100)
-    entity.inititive = i
+    i = math.ceil((entity.get_stat("ag")["current"] * 0.25)) + 75
+    r = random.randint(0,i)
+    print(f"{entity.name} : {r}")
+    entity.set_inititive(r)
     
