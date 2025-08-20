@@ -13,28 +13,53 @@ class Battle_Manager():
         self.turn_order = sorted(self.entities, key=lambda character: character.inititive)
         self.turn_order.reverse()
 
+        self.__alive_enemies = enemy_team
+        self.__alive_allies = player_team
+
+    def fighting(self):
+        if not self.__alive_allies or not self.__alive_enemies:
+            return False
+        else:
+            return True
+
     def current_turn(self):
         current = self.turn_order[0]
         if current.is_alive():
             print(f"--- Round {self.__round} | Turn {self.__turn_idx + 1} ---")
             print(f"{current.name}'s current turn\n")
+
+            # action logic
+            if current in self.__e_party:
+                # enemy logic
+                pass
+            else:
+                action = input("Select action ")
+                for i, enemy in enumerate(self.__alive_enemies):
+                    print(f"{i}: {enemy.name} (HP: {enemy.get_stat('hp')['current']})")
+                target = int(input("Select target "))
+                current.basic_attack(self.__alive_enemies[target])
+
         else:
             print(f"{current.name} is dead. Skipping...\n")
+        
         return current
+
 
     def next_turn(self):
         current = self.turn_order.pop(0)
 
         if current.is_alive():
             self.turn_order.append(current)
-        # Dead characters are not re-added
+            self.__turn_idx += 1
 
-        self.__turn_idx += 1
-
-        # Check if a full round has passed
         if self.__turn_idx % len(self.entities) == 0:
             self.__round += 1
+
+        self.update()
     
+    def update(self):
+        self.__alive_allies = [ally for ally in self.__p_party if ally.is_alive()]
+        self.__alive_enemies = [enemy for enemy in self.__e_party if enemy.is_alive()]
 
     
     
@@ -59,11 +84,11 @@ e3 = generate_enemies.Goblin()
 e_party = []
 e_party.append(e1)
 e_party.append(e2)
-e_party.append(e3)
+# e_party.append(e3)
 
 
 m = Battle_Manager(p_party, e_party)
 
-for _ in range(14):
+while m.fighting():
     m.current_turn()
     m.next_turn()

@@ -20,9 +20,11 @@ class Basic_Attack(Skill):
             dmg = dmg - (dmg * resistance)
             # print(dmg)
             result = combat.damage_target(user, dmg, target)
+            print(f"{user.name} uses {self._name} on {target.name} for {result} points of damage.")
             return(f"{self._name} has been used, {target.name} takes {result} damage.")
 
         else:
+            print("you missed or they dodged")
             return("you missed or they dodged")
 
 

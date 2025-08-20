@@ -53,12 +53,12 @@ def damage_target(user, dmg, target):
     dmg = math.ceil(dmg)
     # crit calc
     roll = random.randint(1,100)
-    print(f"crit roll: {roll}")
+    print(f"crit roll: {roll}, under crit chance: {user.get_stat('crit_chance')['current']}")
     if roll <= user.get_stat("crit_chance")["current"]:
         print("critical hit!")
         dmg = math.ceil((user.get_stat("crit_dmg")["current"]) * dmg)
 
-    print(f"target takes {dmg} points of damage")
+    # print(f"target takes {dmg} points of damage")
     target_hp = target.get_stat("hp")["current"] - dmg
     target_hp = max(target_hp, 0)
     target.set_current_stat("hp", target_hp)

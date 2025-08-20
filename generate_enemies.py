@@ -6,7 +6,7 @@ class Goblin(Character):
         name = "Goblin"
         gold = 0
         base_stats = {
-            "hp":       {"max": 300, "current": 300},
+            "hp":       {"max": 100, "current": 100},
             "pp":       {"max": 20, "current": 20},
             "mp":       {"max": 10, "current": 10},
             "ag":       {"max": 10, "current": 10},
