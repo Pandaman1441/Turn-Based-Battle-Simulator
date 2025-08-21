@@ -37,6 +37,8 @@ class b_UI:
         self.__round = self.__manager.round
         self.__log = ""
         self.__targeting = "none"
+
+    
     
 
     def draw(self, screen):
@@ -50,13 +52,16 @@ class b_UI:
         self.skill.draw(screen)
         self.status.draw(screen)
         self.end_turn.draw(screen)
+        party_border = pygame.Rect((20, 650), (1400, 230))
+        pygame.draw.rect(screen, (240,240,240), party_border, 2)
 
         ########################### party borders and info
 
         # (x,y) (width, hight)
 
-        party_border = pygame.Rect((20, 650), (1400, 230))
-        pygame.draw.rect(screen, (240,240,240), party_border, 2)
+        # convert the icon and health bars into an object so we can do selection and stuff
+        # it takes a position and have attributes to show the resource bars and move slightly
+        
         party_icon_b = pygame.Rect((20, 576), (70,70))
         pygame.draw.rect(screen, (240,240,240), party_icon_b, 2)
 
@@ -121,6 +126,7 @@ class b_UI:
             if self.__targeting == 'enemy':
                 current = self.__manager.current_turn()
                 current.basic_attack(self.__manager.enemies[0])
+                self.__manager.next_turn()
             elif self.__targeting == 'ally':
                 pass
             if self.attack.get_selected():
@@ -133,3 +139,6 @@ class b_UI:
         value = (row * 3) + col
         self.__selected_idx = value
         self.__buttons[value].selected(True)
+
+        if not self.__manager.fighting():
+            return "menu"
