@@ -16,6 +16,22 @@ class Battle_Manager():
         self.__alive_enemies = enemy_team
         self.__alive_allies = player_team
 
+    @property
+    def turn(self):
+        return self.__turn_idx
+    
+    @property
+    def round(self):
+        return self.__round
+    
+    @property
+    def allies(self):
+        return self.__alive_allies
+
+    @property
+    def enemies(self):
+        return self.__alive_enemies
+
     def fighting(self):
         if not self.__alive_allies or not self.__alive_enemies:
             return False
@@ -65,30 +81,30 @@ class Battle_Manager():
     
 
 # Turn order testing
-from Classes import *
-import generate_enemies
+# from Classes import *
+# import generate_enemies
 
-a = artificer.Artificer()
-b = barbarian.Barbarian()
-c = cleric.Cleric()
-r = ranger.Ranger()
-p_party = []
-p_party.append(a)
-p_party.append(b)
-p_party.append(c)
-p_party.append(r)
+# a = artificer.Artificer()
+# b = barbarian.Barbarian()
+# c = cleric.Cleric()
+# r = ranger.Ranger()
+# p_party = []
+# p_party.append(a)
+# p_party.append(b)
+# p_party.append(c)
+# p_party.append(r)
 
-e1 = generate_enemies.Goblin()
-e2 = generate_enemies.Goblin()
-e3 = generate_enemies.Goblin()
-e_party = []
-e_party.append(e1)
-e_party.append(e2)
+# e1 = generate_enemies.Goblin()
+# e2 = generate_enemies.Goblin()
+# e3 = generate_enemies.Goblin()
+# e_party = []
+# e_party.append(e1)
+# e_party.append(e2)
 # e_party.append(e3)
 
 
-m = Battle_Manager(p_party, e_party)
+# m = Battle_Manager(p_party, e_party)
 
-while m.fighting():
-    m.current_turn()
-    m.next_turn()
+# while m.fighting():
+#     m.current_turn()
+#     m.next_turn()

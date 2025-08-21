@@ -4,20 +4,24 @@ import battle_manager
 import generate_enemies
 
 import combat
-
+# need an object that can track a battle instance, has enemies, party, tracks turns.
+        # this class communicates with the 'battle_tracker' 
+        # 'battle_tracker' does all the bts stuff while this class takes the results and displays them
 
 class b_UI:
     def __init__(self, party):
         self.__width = 200
         self.__height = 100
         self.__party = party
-        # self.__manager = battle_manager.Battle_Manager(party, enemies)
-        self.__enemies = generate_enemies.Goblin()
+        e1 = generate_enemies.Goblin()
+        e2 = generate_enemies.Goblin()
+        self.__e_party = []
+        self.__e_party.append(e1)
+        self.__e_party.append(e2)
+        self.__manager = battle_manager.Battle_Manager(party, self.__e_party)
         self.__font = pygame.font.Font(None, 36)      # 24 pixel height
         self.__log_font = pygame.font.Font(None, 24)
-        # need an object that can track a battle instance, has enemies, party, tracks turns.
-        # this class communicates with the 'battle_tracker' 
-        # 'battle_tracker' does all the bts stuff while this class takes the results and displays them
+        
         self.attack = button.Button("Attack",  (30,660), self.__width, self.__height)
         self.skill = button.Button("Skill", (240, 660), self.__width, self.__height)
         self.inventory = button.Button("Inventory", (450, 660), self.__width, self.__height)
@@ -29,8 +33,10 @@ class b_UI:
                           self.defend, self.status, self.end_turn]
         self.__selected_idx = 0
         self.__buttons[self.__selected_idx].selected(True)
-        self.__turn = 0
+        self.__turn = self.__manager.turn
+        self.__round = self.__manager.round
         self.__log = ""
+        self.__targeting = "none"
     
 
     def draw(self, screen):
@@ -80,12 +86,12 @@ class b_UI:
         e_icon_b = pygame.Rect((1330, 76), (70,70))
         pygame.draw.rect(screen, (40,40,40), e_icon_b, 2)
 
-        e_x = pygame.image.load(self.__enemies.icon)
+        e_x = pygame.image.load(self.__e_party[0].icon)
         e_icon = pygame.Surface.convert_alpha(e_x)
         e_icon_rect = e_icon.get_rect(center = e_icon_b.center)
         screen.blit(e_icon, e_icon_rect)
         
-        e_health_values = f'{self.__enemies.get_stat("hp")["current"]} / {self.__enemies.get_stat("hp")["max"]} :HP'
+        e_health_values = f'{self.__e_party[0].get_stat("hp")["current"]} / {self.__e_party[0].get_stat("hp")["max"]} :HP'
         aligned_text = f'{e_health_values:>}'  
         e_health = self.__font.render(aligned_text, 1, (55,55,55))
         e_health_rect = e_health.get_rect(topright=(1390,156))
@@ -112,11 +118,14 @@ class b_UI:
         elif event.key == pygame.K_UP:
             row = (row - 1) % 2
         elif event.key == pygame.K_RETURN:
+            if self.__targeting == 'enemy':
+                current = self.__manager.current_turn()
+                current.basic_attack(self.__manager.enemies[0])
+            elif self.__targeting == 'ally':
+                pass
             if self.attack.get_selected():
+                self.__targeting = 'enemy'
                 
-                self.__log = self.__party[0].basic_attack( self.__enemies)
-                
-            
             else:
                 return "menu"
         self.__buttons[ps].selected(False)

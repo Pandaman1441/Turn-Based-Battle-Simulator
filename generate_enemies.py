@@ -18,7 +18,7 @@ class Goblin(Character):
             "crit_chance": {"max": 0, "current": 0},
             "crit_dmg": {"max": 1.5, "current": 1.5}
         }
-        actives = ["basic attack"]
+        actives = []
         passives = []
         basic_attack_modifier = {"hp": 0, "pp": 1, "mp": 0, "ag": 0, "wp": 0, "pr": 0, "mr": 0, "resource": 0}
         inventory = []
