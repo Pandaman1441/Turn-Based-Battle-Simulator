@@ -1,4 +1,4 @@
-from UI_backend import button
+from UI_backend import button, character_info
 import pygame
 import battle_manager
 import generate_enemies
@@ -38,6 +38,17 @@ class b_UI:
         self.__log = ""
         self.__targeting = "none"
 
+        # self.__p_info = []
+        # for i in self.__party:
+        #     c = character_info.Character_Info(i, 'ally', (20, 576))
+        #     self.__p_info.append(c)
+
+        # self.__e_info = []
+        # for i in self.__e_party:
+        #     c = character_info.Character_Info(i, 'enemy', (1330, 76))
+
+        self.__test_p = character_info.Character_Info(self.__party[0], 'ally', (20,576))
+        self.__test_e = character_info.Character_Info(self.__e_party[0], 'enemy', (1350,20))
     
     
 
@@ -61,53 +72,58 @@ class b_UI:
 
         # convert the icon and health bars into an object so we can do selection and stuff
         # it takes a position and have attributes to show the resource bars and move slightly
+
+        self.__test_p.draw(screen)
         
-        party_icon_b = pygame.Rect((20, 576), (70,70))
-        pygame.draw.rect(screen, (240,240,240), party_icon_b, 2)
+        # party_icon_b = pygame.Rect((20, 576), (70,70))
+        # pygame.draw.rect(screen, (240,240,240), party_icon_b, 2)
 
-        party_x = pygame.image.load(self.__party[0].icon)
-        party_icon = pygame.Surface.convert_alpha(party_x)
-        party_icon_rect = party_icon.get_rect(center = party_icon_b.center)
-        screen.blit(party_icon, party_icon_rect)
+        # party_x = pygame.image.load(self.__party[0].icon)
+        # party_icon = pygame.Surface.convert_alpha(party_x)
+        # party_icon_rect = party_icon.get_rect(center = party_icon_b.center)
+        # screen.blit(party_icon, party_icon_rect)
         
-        health_values = f'HP: {self.__party[0].get_stat("hp")["max"]} / {self.__party[0].get_stat("hp")["current"]}'  
-        health = self.__font.render(health_values, 1, (255,255,255))
-        screen.blit(health, (102,581))
+        # health_values = f'HP: {self.__party[0].get_stat("hp")["max"]} / {self.__party[0].get_stat("hp")["current"]}'  
+        # health = self.__font.render(health_values, 1, (255,255,255))
+        # screen.blit(health, (102,581))
 
-        r_values = f'resource: {self.__party[0].get_stat("resource")["max"]} / {self.__party[0].get_stat("resource")["current"]}'  
-        resource = self.__font.render(r_values, 1, (255,255,255))
-        screen.blit(resource, (102,617))
+        # r_values = f'resource: {self.__party[0].get_stat("resource")["max"]} / {self.__party[0].get_stat("resource")["current"]}'  
+        # resource = self.__font.render(r_values, 1, (255,255,255))
+        # screen.blit(resource, (102,617))
 
-        hp_bar = pygame.Rect((92,576), (300, 34))
-        pygame.draw.rect(screen, (240,240,240), hp_bar, 2)
+        # hp_bar = pygame.Rect((92,576), (300, 34))
+        # pygame.draw.rect(screen, (240,240,240), hp_bar, 2)
 
-        r_bar = pygame.Rect((92,612), (300, 34))
-        pygame.draw.rect(screen, (240,240,240), r_bar, 2)
+        # r_bar = pygame.Rect((92,612), (300, 34))
+        # pygame.draw.rect(screen, (240,240,240), r_bar, 2)
 
         ########################
 
         # e_border = pygame.Rect((20, 250), (1400, 230))
         # pygame.draw.rect(screen, (240,240,240), e_border, 2)
-        e_icon_b = pygame.Rect((1330, 76), (70,70))
-        pygame.draw.rect(screen, (40,40,40), e_icon_b, 2)
 
-        e_x = pygame.image.load(self.__e_party[0].icon)
-        e_icon = pygame.Surface.convert_alpha(e_x)
-        e_icon_rect = e_icon.get_rect(center = e_icon_b.center)
-        screen.blit(e_icon, e_icon_rect)
+        self.__test_e.draw(screen)
+
+        # e_icon_b = pygame.Rect((1330, 76), (70,70))
+        # pygame.draw.rect(screen, (40,40,40), e_icon_b, 2)
+
+        # e_x = pygame.image.load(self.__e_party[0].icon)
+        # e_icon = pygame.Surface.convert_alpha(e_x)
+        # e_icon_rect = e_icon.get_rect(center = e_icon_b.center)
+        # screen.blit(e_icon, e_icon_rect)
         
-        e_health_values = f'{self.__e_party[0].get_stat("hp")["current"]} / {self.__e_party[0].get_stat("hp")["max"]} :HP'
-        aligned_text = f'{e_health_values:>}'  
-        e_health = self.__font.render(aligned_text, 1, (55,55,55))
-        e_health_rect = e_health.get_rect(topright=(1390,156))
-        screen.blit(e_health, e_health_rect)
+        # e_health_values = f'{self.__e_party[0].get_stat("hp")["current"]} / {self.__e_party[0].get_stat("hp")["max"]} :HP'
+        # aligned_text = f'{e_health_values:>}'  
+        # e_health = self.__font.render(aligned_text, 1, (55,55,55))
+        # e_health_rect = e_health.get_rect(topright=(1390,156))
+        # screen.blit(e_health, e_health_rect)
 
-        e_hp_bar = pygame.Rect((1100,148), (300, 34))
-        pygame.draw.rect(screen, (40,40,40), e_hp_bar, 2)
-        ########################
+        # e_hp_bar = pygame.Rect((1100,148), (300, 34))
+        # pygame.draw.rect(screen, (40,40,40), e_hp_bar, 2)
+        # ########################
 
-        log = self.__log_font.render(self.__log, 1, (255,255,255))
-        screen.blit(log, (660, 700))
+        # log = self.__log_font.render(self.__log, 1, (255,255,255))
+        # screen.blit(log, (660, 700))
 
 
     def handle_event(self, event):
