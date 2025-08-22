@@ -40,23 +40,23 @@ class Battle_Manager():
 
     def current_turn(self):
         current = self.turn_order[0]
-        if current.is_alive():
-            print(f"--- Round {self.__round} | Turn {self.__turn_idx + 1} ---")
-            print(f"{current.name}'s current turn\n")
+        # if current.is_alive():
+        #     print(f"--- Round {self.__round} | Turn {self.__turn_idx + 1} ---")
+        #     print(f"{current.name}'s current turn\n")
 
-            # action logic
-            if current in self.__e_party:
-                # enemy logic
-                pass
-            else:
-                action = input("Select action ")
-                for i, enemy in enumerate(self.__alive_enemies):
-                    print(f"{i}: {enemy.name} (HP: {enemy.get_stat('hp')['current']})")
-                target = int(input("Select target "))
-                current.basic_attack(self.__alive_enemies[target])
+        #     # action logic
+        #     if current in self.__e_party:
+        #         # enemy logic
+        #         pass
+        #     else:
+        #         # action = input("Select action ")
+        #         for i, enemy in enumerate(self.__alive_enemies):
+        #             print(f"{i}: {enemy.name} (HP: {enemy.get_stat('hp')['current']})")
+        #         target = int(input("Select target "))
+        #         current.basic_attack(self.__alive_enemies[target])
 
-        else:
-            print(f"{current.name} is dead. Skipping...\n")
+        # else:
+        #     print(f"{current.name} is dead. Skipping...\n")
         
         return current
 

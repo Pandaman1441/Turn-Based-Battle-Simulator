@@ -10,8 +10,6 @@ import combat
 
 class b_UI:
     def __init__(self, party):
-        self.__width = 200
-        self.__height = 100
         self.__party = party
         e1 = generate_enemies.Goblin()
         e2 = generate_enemies.Goblin()
@@ -22,12 +20,12 @@ class b_UI:
         self.__font = pygame.font.Font(None, 36)      # 24 pixel height
         self.__log_font = pygame.font.Font(None, 24)
         
-        self.attack = button.Button("Attack",  (30,660), self.__width, self.__height)
-        self.skill = button.Button("Skill", (240, 660), self.__width, self.__height)
-        self.inventory = button.Button("Inventory", (450, 660), self.__width, self.__height)
-        self.defend = button.Button("Defend", (30, 770), self.__width, self.__height)
-        self.status = button.Button("Status", (240, 770), self.__width, self.__height)
-        self.end_turn = button.Button("End Turn", (450, 770), self.__width, self.__height)
+        self.attack = button.Button("Attack",  (30,660), 200, 100)
+        self.skill = button.Button("Skill", (240, 660), 200, 100)
+        self.inventory = button.Button("Inventory", (450, 660), 200, 100)
+        self.defend = button.Button("Defend", (30, 770), 200, 100)
+        self.status = button.Button("Status", (240, 770), 200, 100)
+        self.end_turn = button.Button("End Turn", (450, 770), 200, 100)
 
         self.__buttons = [self.attack, self.skill, self.inventory,
                           self.defend, self.status, self.end_turn]
@@ -38,17 +36,23 @@ class b_UI:
         self.__log = ""
         self.__targeting = "none"
 
-        # self.__p_info = []
-        # for i in self.__party:
-        #     c = character_info.Character_Info(i, 'ally', (20, 576))
-        #     self.__p_info.append(c)
+        self.__p_info = []
+        for i, c in enumerate(self.__party):
+            pos_x = 20 +(74*i)
+            entity = character_info.Character_Info(c, 'ally', (pos_x, 576))
+            self.__p_info.append(entity)
 
-        # self.__e_info = []
-        # for i in self.__e_party:
-        #     c = character_info.Character_Info(i, 'enemy', (1330, 76))
+        self.__e_info = []
+        for i, c in enumerate(self.__e_party):
+            pos_x = 1330 - (74*i)
+            entity = character_info.Character_Info(c, 'enemy', (pos_x, 76))
+            self.__e_info.append(entity)
+        
+        self.__p_info[0].selected(True)
+        self.__e_info[0].selected(True)
 
-        self.__test_p = character_info.Character_Info(self.__party[0], 'ally', (20,576))
-        self.__test_e = character_info.Character_Info(self.__e_party[0], 'enemy', (1350,20))
+        
+
     
     
 
@@ -67,10 +71,13 @@ class b_UI:
         pygame.draw.rect(screen, (240,240,240), party_border, 2)
 
 
-        self.__test_p.draw(screen)
-        
-        self.__test_e.draw(screen)
+        for i in self.__p_info:
+            i.draw(screen)
 
+        for i in self.__e_info:
+            i.draw(screen)
+
+        
 
     def handle_event(self, event):
         ps = self.__selected_idx

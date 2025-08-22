@@ -7,13 +7,7 @@ from Screens import shop
 class manager:
     def __init__(self, pc):
         self.__party = [pc]
-        self.screens = {
-                        "battle" : battle_ui.b_UI(self.__party),
-                        "menu" : main_menu.menu(self.__party),
-                        "shop" : shop.Shop(self.__party),
-                        "party" : party.Party(self.__party)
-           }
-        self.current = self.screens["menu"]
+        self.current = main_menu.menu(self.__party)
         self.__running = True
 
     def handle_event(self, event):
@@ -21,8 +15,14 @@ class manager:
         if fg:
             if fg == "quit":
                 self.__running = False
-            elif fg in self.screens:
-                self.current = self.screens[fg]
+            elif fg == "battle":
+                self.current = battle_ui.b_UI(self.__party)
+            elif fg == "menu":
+                self.current = main_menu.menu(self.__party)
+            elif fg == "shop":
+                self.current = shop.Shop(self.__party)
+            elif fg == "party":
+                self.current = party.Party(self.__party)
     
     def draw(self, screen):
         self.current.draw(screen)
